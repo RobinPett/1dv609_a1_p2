@@ -1,13 +1,21 @@
-import TodoManager from '../src/TodoManager'
+import TodoManager from "../src/js/TodoManager"
+import TodoItem from "../src/TodoItem"
 
-descrobe('TodoManager class test', () => {
+jest.mock("../src/TodoItem")
+
+describe('TodoManager class test', () => {
     it('should add a new todo item to manager', () => {
         const task = 'Buy milk'
+        const todoItemMock = {
+            getTask: jest.fn().mockReturnValue(task)
+        }
+        TodoItem.mockImplementation(() => todoItemMock)
+
         const todoManager = new TodoManager()
         todoManager.addTask(task)
-        const actual = todoManager.getTasks()
+        const actualTasks = todoManager.getTasks()
 
-        expect(actual).toContain(task)
+        expect(actualTasks.length).toBe(1)
+        expect(actualTasks[0].getTask()).toBe(task)
     })
-
 })
