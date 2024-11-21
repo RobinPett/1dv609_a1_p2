@@ -7,7 +7,7 @@ const createMockTodoItem = (task) => {
     const todoItemMock = {
         getTask: jest.fn().mockReturnValue(task)
     }
-    TodoItem.mockImplementation(() => todoItemMock)
+    TodoItem.mockImplementationOnce(() => todoItemMock)
     return todoItemMock
 }
 
