@@ -24,8 +24,8 @@ describe('TodoItem class test', () => {
   it('should set task status to done', () => {
     const todoItem = new TodoItem('Buy milk')
     todoItem.toggleStatus()
-    actual = todoItem.getStatus()
-    expected = 1
+    const actual = todoItem.getStatus()
+    const expected = 1
     expect(actual).toBe(expected)
   })
 })
