@@ -23,4 +23,20 @@ describe('TodoManager class test', () => {
         expect(actualTasks.length).toBe(1)
         expect(actualTasks[0].getTask()).toBe(task)
     })
+
+    it('should add two todo items to manager', () => {
+        const task1 = 'Buy milk'
+        const task2 = 'Buy bread'
+        createMockTodoItem(task1)
+        createMockTodoItem(task2)
+
+        const todoManager = new TodoManager()
+        todoManager.addTask(task1)
+        todoManager.addTask(task2)
+        const actualTasks = todoManager.getTasks()
+
+        expect(actualTasks.length).toBe(2)
+        expect(actualTasks[0].getTask()).toBe(task1)
+        expect(actualTasks[1].getTask()).toBe(task2)
+    })
 })
