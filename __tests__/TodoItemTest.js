@@ -1,3 +1,4 @@
+import TodoItem from '../src/TodoItem'
 
 describe('TodoItem class test', () => {
   it('should set a new todo task', () => {
