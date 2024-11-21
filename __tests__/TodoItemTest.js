@@ -8,4 +8,9 @@ describe('TodoItem class test', () => {
     const actual = todoItem.getTask()
     expect(actual).toBe(task)
   })
+
+  it('should throw an exception if task is not a string', () => {
+    const task = 1
+    expect(() => new TodoItem(task)).toThrow()
+  })
 })
