@@ -1,5 +1,9 @@
 class TodoItem {
-    #task = ''
+    #task
+
+    constructor(task) {
+        this.#task = task
+    }
 
     setTask(task) {
         this.#task = task
