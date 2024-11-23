@@ -50,7 +50,12 @@ describe('TodoManager class test', () => {
         const task2 = 'Buy bread'
 
         const todoManager = createAndAddTasksToManager([task1, task2])
-        todoManager.removeTask(task1)
+        const allTasks = todoManager.getTasks()
+
+        const actualTask1 = allTasks[0]
+
+
+        todoManager.removeTask(actualTask1)
         const actualTasks = todoManager.getTasks()
 
         expect(actualTasks.length).toBe(1)
