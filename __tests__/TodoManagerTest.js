@@ -11,13 +11,22 @@ const createMockTodoItem = (task) => {
     return todoItemMock
 }
 
+const createAndAddTasksToManager = (tasks) => {
+    const todoManager = new TodoManager()
+
+    tasks.forEach(task => {
+        createMockTodoItem(task)
+        todoManager.addTask(task)
+    })
+
+    return todoManager
+}
+
 describe('TodoManager class test', () => {
     it('should add a new todo item to manager', () => {
         const task = 'Buy milk'
-        createMockTodoItem(task)
 
-        const todoManager = new TodoManager()
-        todoManager.addTask(task)
+        const todoManager = createAndAddTasksToManager([task])
         const actualTasks = todoManager.getTasks()
 
         expect(actualTasks.length).toBe(1)
@@ -27,12 +36,8 @@ describe('TodoManager class test', () => {
     it('should add two todo items to manager', () => {
         const task1 = 'Buy milk'
         const task2 = 'Buy bread'
-        createMockTodoItem(task1)
-        createMockTodoItem(task2)
 
-        const todoManager = new TodoManager()
-        todoManager.addTask(task1)
-        todoManager.addTask(task2)
+        const todoManager = createAndAddTasksToManager([task1, task2])
         const actualTasks = todoManager.getTasks()
 
         expect(actualTasks.length).toBe(2)
@@ -40,3 +45,5 @@ describe('TodoManager class test', () => {
         expect(actualTasks[1].getTask()).toBe(task2)
     })
 })
+
+
