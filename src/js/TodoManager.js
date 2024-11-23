@@ -13,7 +13,7 @@ class TodoManager {
     }
 
     removeTask(task) {
-        const taskIndex = this.#tasks.findIndex(t => t.getTask() === task.getTask())
+        const taskIndex = this.#tasks.findIndex(t => t.getId() === task.getId())
         this.#tasks.splice(taskIndex, 1) // 1 todoItem to remove
     }
 }

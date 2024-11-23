@@ -1,9 +1,11 @@
 class TodoItem {
     #task
+    #id
     #status = 0
 
     constructor(task) {
         this.checkTaskName(task)
+        this.#generateId()
         this.#task = task
     }
 
@@ -32,6 +34,20 @@ class TodoItem {
 
     getStatus() {
         return this.#status
+    }
+
+    /**
+     * Generate a unique id.
+     * Taken from: https://stackoverflow.com/a/53116778
+     * 
+     * @returns 
+     */
+    #generateId() {
+        this.#id = Date.now().toString(36) + Math.random().toString(36).substring(2)
+    }
+
+    getId() {
+        return this.#id
     }
 }
 

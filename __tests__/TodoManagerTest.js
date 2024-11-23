@@ -5,7 +5,8 @@ jest.mock("../src/TodoItem")
 
 const createMockTodoItem = (task) => {
     const todoItemMock = {
-        getTask: jest.fn().mockReturnValue(task)
+        getTask: jest.fn().mockReturnValue(task),
+        getId: jest.fn().mockReturnValue(task)
     }
     TodoItem.mockImplementationOnce(() => todoItemMock)
     return todoItemMock
@@ -53,7 +54,6 @@ describe('TodoManager class test', () => {
         const allTasks = todoManager.getTasks()
 
         const actualTask1 = allTasks[0]
-
 
         todoManager.removeTask(actualTask1)
         const actualTasks = todoManager.getTasks()
