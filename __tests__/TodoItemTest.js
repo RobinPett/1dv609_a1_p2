@@ -36,16 +36,16 @@ describe('TodoItem class test', () => {
   it('should set task status to done', () => {
     todoItem.toggleStatus()
     const actual = todoItem.getStatus()
-    const expected = 1
+    const expected = true
 
     expect(actual).toBe(expected)
   })
 
   it ('should set task status to not done', () => {
-    todoItem.toggleStatus() // Status: Done (1)
-    todoItem.toggleStatus() // Status: Not done (0)
+    todoItem.toggleStatus() // Completed: True
+    todoItem.toggleStatus() // Completed: False
     const actual = todoItem.getStatus()
-    const expected = 0
+    const expected = false
 
     expect(actual).toBe(expected)
   })

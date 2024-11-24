@@ -1,7 +1,7 @@
 class TodoItem {
     #task
     #id
-    #status = 0
+    #completed = false
 
     constructor(task) {
         this.checkTaskName(task)
@@ -25,15 +25,11 @@ class TodoItem {
     }
 
     toggleStatus() {
-        if (this.#status === 0) {
-            this.#status = 1
-        } else {
-            this.#status = 0
-        }
+        !this.#completed ? this.#completed = true : this.#completed = false
     }
 
     getStatus() {
-        return this.#status
+        return this.#completed
     }
 
     /**
