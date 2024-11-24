@@ -13,6 +13,13 @@ describe('TodoItem class test', () => {
     expect(actual).toBe(task)
   })
 
+  it('should get id', () => {
+    const expected = 'string'
+    const actual = todoItem.getId()
+    expect(typeof actual).toBe(expected)
+    expect(actual.length).toBeGreaterThan(0)
+  })
+
   it('should change a task', () => {
     const newTask = 'Buy milk'
     todoItem.setTask(newTask)
