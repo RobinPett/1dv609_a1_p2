@@ -4,9 +4,13 @@ import TodoItem from "../src/TodoItem"
 jest.mock("../src/TodoItem")
 
 const createMockTodoItem = (task) => {
+    let completed = false
+
     const todoItemMock = {
         getTask: jest.fn().mockReturnValue(task),
-        getId: jest.fn().mockReturnValue(task)
+        getId: jest.fn().mockReturnValue(task),
+        toggleStatus: jest.fn(() => completed = !completed),
+        getStatus: jest.fn(() => completed)
     }
     TodoItem.mockImplementationOnce(() => todoItemMock)
     return todoItemMock
