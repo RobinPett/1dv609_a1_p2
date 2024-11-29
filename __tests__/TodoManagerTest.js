@@ -61,6 +61,17 @@ describe('TodoManager class test', () => {
         expect(actualTasks.length).toBe(1)
         expect(actualTasks[0].getTask()).toBe(task2)
     })
+
+    it ('should set status of task to completed', () => {
+        const task = 'Buy milk'
+
+        const todoManager = createAndAddTasksToManager([task])
+        const actualTasks = todoManager.getTasks()
+
+        const chosenTask = actualTasks[0]
+        todoManager.toggleStatus(chosenTask)
+        expect(chosenTask.getStatus()).toBe(true)
+    })
 })
 
 
