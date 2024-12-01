@@ -1,15 +1,15 @@
-import TodoManager from "../src/js/TodoManager"
-import TodoItem from "../src/TodoItem"
+import TaskManager from "../src/js/TaskManager"
+import Task from "../src/js/Task"
 
-jest.mock("../src/TodoItem")
+jest.mock("../src/js/Task")
 
 let sut
 
 beforeEach(() => {
-    sut = new TodoManager();
+    sut = new TaskManager()
 })
 
-describe('TodoManager class test', () => {
+describe('TaskManager class test', () => {
     it('should add a new task to manager', () => {
         assertTasksAdded(sut, ['Buy milk'])
     })
@@ -43,7 +43,7 @@ assertTasksAdded = (sut, tasks) => {
 
     tasks.forEach((task, index) => {
         const expectedTask = task
-        const actualTask = allTasks[index].getTask()
+        const actualTask = allTasks[index].getName()
         expect(expectedTask).toBe(actualTask)
         expect(allTasks.length).toBe(tasks.length)
     })
@@ -75,13 +75,11 @@ createMockTask = (task) => {
     let completed = false
 
     const taskMock = {
-        getTask: jest.fn().mockReturnValue(task),
+        getName: jest.fn().mockReturnValue(task),
         getId: jest.fn().mockReturnValue(task),
         toggleStatus: jest.fn(() => completed = !completed),
         getStatus: jest.fn(() => completed)
     }
-    TodoItem.mockImplementationOnce(() => taskMock)
+    Task.mockImplementationOnce(() => taskMock)
     return taskMock
 }
-
-

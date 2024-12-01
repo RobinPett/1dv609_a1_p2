@@ -1,5 +1,5 @@
 TN:
-SF:src\TodoItem.js
+SF:src\js\Task.js
 FN:6,(anonymous_0)
 FN:12,(anonymous_1)
 FN:17,(anonymous_2)
@@ -39,7 +39,7 @@ BRF:4
 BRH:4
 end_of_record
 TN:
-SF:src\js\TodoManager.js
+SF:src\js\TaskManager.js
 FN:6,(anonymous_0)
 FN:11,(anonymous_1)
 FN:15,(anonymous_2)

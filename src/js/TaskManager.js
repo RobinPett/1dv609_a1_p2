@@ -1,11 +1,11 @@
-import TodoItem from "../TodoItem"
+import Task from "./Task"
 
-class TodoManager {
+class TaskManager {
     #tasks = []
 
     addTask(task) {
-        const todoItem = new TodoItem(task)
-        this.#tasks.push(todoItem)
+        const newTask = new Task(task)
+        this.#tasks.push(newTask)
     }
 
     getTasks() {
@@ -27,4 +27,4 @@ class TodoManager {
     }
 }
 
-export default TodoManager
+export default TaskManager

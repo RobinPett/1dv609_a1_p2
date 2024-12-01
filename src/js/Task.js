@@ -1,25 +1,25 @@
-class TodoItem {
-    #task
+class Task {
     #id
+    #name
     #completed = false
 
-    constructor(task) {
-        this.checkTaskName(task)
+    constructor(name) {
+        this.checkName(name)
         this.#generateId()
-        this.#task = task
+        this.#name = name
     }
 
-    setTask(task) {
-        this.checkTaskName(task)
-        this.#task = task
+    setName(name) {
+        this.checkName(name)
+        this.#name = name
     }
 
-    getTask() {
-        return this.#task
+    getName() {
+        return this.#name
     }
 
-    checkTaskName(task) {
-        if (typeof task !== "string") {
+    checkName(name) {
+        if (typeof name !== "string") {
             throw new Error("Task name must be a string")
         }
     }
@@ -47,4 +47,4 @@ class TodoItem {
     }
 }
 
-export default TodoItem
+export default Task
