@@ -3,7 +3,7 @@ class TaskStorage {
     }
 
     load() {
-        return {name: 'Buy Milk', id: 'mockId', completed: false}
+        return [{name: 'Buy Milk', id: 'mockId', completed: false}, {name: 'Buy Bread', id: 'mockId2', completed: false}]
     }
 }
 

@@ -12,7 +12,7 @@ describe('TaskStorage Test', () => {
         sut.save(task)
 
         const savedTasks = sut.load()
-        expect(savedTasks).toEqual(task)
+        expect(savedTasks[0]).toEqual(task)
     })
 
     it ('should load a task', () => {
