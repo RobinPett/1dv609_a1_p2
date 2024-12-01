@@ -83,7 +83,7 @@ createMockTask = (task) => {
     const taskMock = {
         getName: jest.fn().mockReturnValue(task),
         getId: jest.fn().mockReturnValue(task),
-        toggleStatus: jest.fn(() => completed = true),
+        toggleStatus: jest.fn(() => completed = !completed),
         getStatus: jest.fn(() => completed)
     }
     Task.mockImplementationOnce(() => taskMock)
