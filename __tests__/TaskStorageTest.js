@@ -1,3 +1,5 @@
+import TaskStorage from "../src/js/TaskStorage"
+
 describe('TaskStorage Test', () => {
     it ('should save one task', () => {
         const task = {name: 'Buy Milk', id: 'mockId', completed: false}
