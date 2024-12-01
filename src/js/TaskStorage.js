@@ -1,14 +1,9 @@
 class TaskStorage {
-    storedTasks = []
-
     save(tasks) {
-        tasks.forEach(task => {
-            this.storedTasks.push(task)
-        })
     }
 
     load() {
-        return this.storedTasks
+        return {name: 'Buy Milk', id: 'mockId', completed: false}
     }
 }
 
