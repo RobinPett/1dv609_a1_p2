@@ -26,6 +26,12 @@ describe('TaskManager class test', () => {
         const toggledTask = addTaskAndToggleStatus(sut, 'Buy milk')
         assertTaskStatus(toggledTask, true)
     })
+
+    it ('should set status of task to not completed', () => {
+        const toggledTask = addTaskAndToggleStatus(sut, 'Buy milk')
+        sut.toggleStatus(toggledTask) // Completed: True
+        assertTaskStatus(toggledTask, false)
+    })
 })
 
 addTaskAndToggleStatus = (sut, task) => {
@@ -77,7 +83,7 @@ createMockTask = (task) => {
     const taskMock = {
         getName: jest.fn().mockReturnValue(task),
         getId: jest.fn().mockReturnValue(task),
-        toggleStatus: jest.fn(() => completed = !completed),
+        toggleStatus: jest.fn(() => completed = true),
         getStatus: jest.fn(() => completed)
     }
     Task.mockImplementationOnce(() => taskMock)
