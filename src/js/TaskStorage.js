@@ -1,9 +1,16 @@
 class TaskStorage {
+    #storage
+
+    constructor(localStorage) {
+        this.#storage = localStorage
+    }
+
     save(tasks) {
+        this.#storage.setItem('Todo', JSON.stringify(tasks))
     }
 
     load() {
-        return [{name: 'Buy Milk', id: 'mockId', completed: false}, {name: 'Buy Bread', id: 'mockId2', completed: false}]
+        return JSON.parse(this.#storage.getItem('Todo'))
     }
 }
 

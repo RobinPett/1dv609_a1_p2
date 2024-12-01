@@ -3,13 +3,16 @@ import TaskStorage from "../src/js/TaskStorage"
 let sut
 
 beforeEach(() => {
-    sut = new TaskStorage()
+    const mockLocalStorage = createMockLocalStorage()
+    sut = new TaskStorage(mockLocalStorage)
 })
+
+
 
 describe('TaskStorage Test', () => {
     it ('should save one task', () => {
         const task = {name: 'Buy Milk', id: 'mockId', completed: false}
-        sut.save(task)
+        sut.save([task])
 
         const savedTasks = sut.load()
         expect(savedTasks[0]).toEqual(task)
@@ -21,6 +24,20 @@ describe('TaskStorage Test', () => {
         sut.save([task1, task2])
 
         const savedTasks = sut.load()
+        console.log(savedTasks)
         expect(savedTasks[1]).toEqual(task2)
     })
 })
+
+const createMockLocalStorage = () => {
+    let savedItems = {}
+    return {
+        setItem: (key, value) => {
+            savedItems[key] = value
+        },
+
+        getItem: (key) => {
+            return savedItems[key]
+        }
+    }
+}
