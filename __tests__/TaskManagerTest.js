@@ -4,6 +4,8 @@ import Task from "../src/js/Task"
 jest.mock("../src/js/Task")
 
 let sut
+const buyMilk = 'Buy milk'
+const buyBread = 'Buy bread'
 
 beforeEach(() => {
     sut = new TaskManager()
@@ -11,24 +13,24 @@ beforeEach(() => {
 
 describe('TaskManager class test', () => {
     it('should add a new task to manager', () => {
-        assertTasksAdded(sut, ['Buy milk'])
+        assertTasksAdded(sut, [buyMilk])
     })
 
     it('should add two tasks to manager', () => {
-        assertTasksAdded(sut, ['Buy milk', 'Buy bread'])
+        assertTasksAdded(sut, [buyMilk, buyBread])
     })
 
     it('should remove one task from manager', () => {
-        assertTaskRemoval(sut, ['Buy milk', 'Buy bread'])
+        assertTaskRemoval(sut, [buyMilk, buyBread])
     })
 
     it ('should set status of task to completed', () => {
-        const toggledTask = addTaskAndToggleStatus(sut, 'Buy milk')
+        const toggledTask = addTaskAndToggleStatus(sut, buyMilk)
         assertTaskStatus(toggledTask, true)
     })
 
     it ('should set status of task to not completed', () => {
-        const toggledTask = addTaskAndToggleStatus(sut, 'Buy milk')
+        const toggledTask = addTaskAndToggleStatus(sut, buyMilk)
         sut.toggleStatus(toggledTask) // Completed: True
         assertTaskStatus(toggledTask, false)
     })
