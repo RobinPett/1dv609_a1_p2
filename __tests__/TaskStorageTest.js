@@ -7,8 +7,6 @@ beforeEach(() => {
     sut = new TaskStorage(mockLocalStorage)
 })
 
-
-
 describe('TaskStorage Test', () => {
     it ('should save one task', () => {
         const task = {name: 'Buy Milk', id: 'mockId', completed: false}
@@ -26,6 +24,10 @@ describe('TaskStorage Test', () => {
         const savedTasks = sut.load()
         console.log(savedTasks)
         expect(savedTasks[1]).toEqual(task2)
+    })
+
+    it ('should load empty task list', () => {
+        expect(sut.load()).toBe([])
     })
 })
 
