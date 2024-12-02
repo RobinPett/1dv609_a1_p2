@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1733084533808" clover="3.2.0">
-  <project timestamp="1733084533808" name="All files">
-    <metrics statements="26" coveredstatements="26" conditionals="2" coveredconditionals="2" methods="15" coveredmethods="15" elements="43" coveredelements="43" complexity="0" loc="26" ncloc="26" packages="1" files="3" classes="3"/>
+<coverage generated="1733172700306" clover="3.2.0">
+  <project timestamp="1733172700306" name="All files">
+    <metrics statements="28" coveredstatements="28" conditionals="4" coveredconditionals="4" methods="16" coveredmethods="16" elements="48" coveredelements="48" complexity="0" loc="28" ncloc="28" packages="1" files="3" classes="3"/>
     <file name="Task.js" path="C:\Users\plugg\Desktop\1DV609\assignments\1dv609_a1_p2\src\js\Task.js">
       <metrics statements="13" coveredstatements="13" conditionals="2" coveredconditionals="2" methods="7" coveredmethods="7"/>
       <line num="4" count="7" type="stmt"/>
@@ -31,11 +31,13 @@
       <line num="26" count="4" type="stmt"/>
     </file>
     <file name="TaskStorage.js" path="C:\Users\plugg\Desktop\1DV609\assignments\1dv609_a1_p2\src\js\TaskStorage.js">
-      <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3"/>
-      <line num="2" count="1" type="stmt"/>
-      <line num="5" count="1" type="stmt"/>
-      <line num="6" count="1" type="stmt"/>
-      <line num="11" count="1" type="stmt"/>
+      <metrics statements="6" coveredstatements="6" conditionals="2" coveredconditionals="2" methods="4" coveredmethods="4"/>
+      <line num="8" count="4" type="stmt"/>
+      <line num="12" count="3" type="stmt"/>
+      <line num="13" count="3" type="stmt"/>
+      <line num="16" count="3" type="stmt"/>
+      <line num="20" count="3" type="cond" truecount="2" falsecount="0"/>
+      <line num="24" count="5" type="stmt"/>
     </file>
   </project>
 </coverage>

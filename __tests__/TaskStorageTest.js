@@ -24,7 +24,7 @@ describe('TaskStorage Test', () => {
     })
 
     it ('should throw an error if tasks are not of type Task', () => {
-        expect(sut.save(1)).toThrow(Error)
+        expect(() => sut.save()).toThrow()
     })
 })
 

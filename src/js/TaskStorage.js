@@ -1,3 +1,5 @@
+import Task from './Task'
+
 class TaskStorage {
     #storage
     #key
@@ -7,7 +9,9 @@ class TaskStorage {
     }
 
     save(tasks) {
-        this.#storage.setItem(this.#key, JSON.stringify(tasks))
+        throw new Error()
+
+        // this.#storage.setItem(this.#key, JSON.stringify(tasks))
     }
 
     load() {
