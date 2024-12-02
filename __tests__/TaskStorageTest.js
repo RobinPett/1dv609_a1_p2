@@ -1,5 +1,8 @@
 import TaskStorage from "../src/js/TaskStorage"
 
+const task1 = 'Buy Milk'
+const task2 = 'Buy Bread'
+
 let sut
 
 beforeEach(() => {
@@ -8,28 +11,32 @@ beforeEach(() => {
 })
 
 describe('TaskStorage Test', () => {
-    it ('should save one task', () => {
-        const task = {name: 'Buy Milk', id: 'mockId', completed: false}
-        sut.save([task])
-
-        const savedTasks = sut.load()
-        expect(savedTasks[0]).toEqual(task)
+    it ('should save and load one task', () => {
+        assertSavedTask(sut, [task1])
     })
 
-    it ('should load a task', () => {
-        const task1 = {name: 'Buy Milk', id: 'mockId', completed: false}
-        const task2 = {name: 'Buy Bread', id: 'mockId2', completed: false}
-        sut.save([task1, task2])
-
-        const savedTasks = sut.load()
-        console.log(savedTasks)
-        expect(savedTasks[1]).toEqual(task2)
+    it ('should save and load multiple tasks', () => {
+        assertSavedTask(sut, [task1, task2])
     })
 
     it ('should load empty task list', () => {
         expect(sut.load()).toStrictEqual([])
     })
 })
+
+const assertSavedTask = (sut, tasks) => {
+    const mockedTasks = mockTasks(tasks)
+    sut.save(mockedTasks)
+    const loadedTasks = sut.load()
+    
+    expect(loadedTasks).toEqual(mockedTasks)
+}
+
+const mockTasks = (tasks) => {
+    return tasks.map((task, index) => {
+        return {name: task, id: `mockId${index}`, completed: false}
+    })
+}
 
 const createMockLocalStorage = () => {
     let savedItems = {}

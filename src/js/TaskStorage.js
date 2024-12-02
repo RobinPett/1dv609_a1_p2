@@ -1,20 +1,21 @@
 class TaskStorage {
     #storage
+    #key
 
     constructor(localStorage) {
         this.#storage = localStorage
     }
 
     save(tasks) {
-        this.#storage.setItem('Todo', JSON.stringify(tasks))
+        this.#storage.setItem(this.#key, JSON.stringify(tasks))
     }
 
     load() {
-        if (this.#storage.getItem('Todo')) {
-            return JSON.parse(this.#storage.getItem('Todo'))
-        } else {
-            return []
-        }
+        return this.#getItem() ? JSON.parse(this.#getItem()) : []
+    }
+
+    #getItem() {
+        return this.#storage.getItem(this.#key)
     }
 }
 
