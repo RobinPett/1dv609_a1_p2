@@ -27,7 +27,7 @@ describe('TaskStorage Test', () => {
     })
 
     it ('should load empty task list', () => {
-        expect(sut.load()).toBe([])
+        expect(sut.load()).toStrictEqual([])
     })
 })
 

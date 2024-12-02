@@ -10,7 +10,11 @@ class TaskStorage {
     }
 
     load() {
-        return JSON.parse(this.#storage.getItem('Todo'))
+        if (this.#storage.getItem('Todo')) {
+            return JSON.parse(this.#storage.getItem('Todo'))
+        } else {
+            return []
+        }
     }
 }
 
