@@ -22,6 +22,10 @@ describe('TaskStorage Test', () => {
     it ('should load empty task list', () => {
         expect(sut.load()).toStrictEqual([])
     })
+
+    it ('should throw an error if tasks are not of type Task', () => {
+        expect(sut.save(1)).toThrow(Error)
+    })
 })
 
 const assertSavedTask = (sut, tasks) => {
