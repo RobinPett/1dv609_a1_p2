@@ -1,4 +1,16 @@
 import TaskStorage from "../src/js/TaskStorage"
+import Task from "../src/js/Task"
+
+jest.mock('../src/js/Task', () => {
+    return {
+        __esModule: true,
+        default: class MockTask {
+            constructor(name) {
+                this.name = name
+            }
+        }
+    }
+})
 
 const task1 = 'Buy Milk'
 const task2 = 'Buy Bread'
@@ -15,7 +27,7 @@ describe('TaskStorage Test', () => {
         assertSavedTask(sut, [task1])
     })
 
-    it ('should save and load multiple tasks', () => {
+    it ('should save and load two tasks', () => {
         assertSavedTask(sut, [task1, task2])
     })
 
@@ -24,23 +36,19 @@ describe('TaskStorage Test', () => {
     })
 
     it ('should throw an error if tasks are not of type Task', () => {
-        expect(() => sut.save()).toThrow()
+        expect(() => sut.save([{}])).toThrow()
     })
 })
 
 const assertSavedTask = (sut, tasks) => {
-    const mockedTasks = mockTasks(tasks)
-    sut.save(mockedTasks)
+    const createdTasks = createTasks(tasks)
+    sut.save(createdTasks)
     const loadedTasks = sut.load()
-    
-    expect(loadedTasks).toEqual(mockedTasks)
+
+    expect(loadedTasks).toEqual(createdTasks)
 }
 
-const mockTasks = (tasks) => {
-    return tasks.map((task, index) => {
-        return {name: task, id: `mockId${index}`, completed: false}
-    })
-}
+const createTasks = (tasks) => tasks.map(task => new Task(task))
 
 const createMockLocalStorage = () => {
     let savedItems = {}

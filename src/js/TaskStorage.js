@@ -2,16 +2,18 @@ import Task from './Task'
 
 class TaskStorage {
     #storage
-    #key
+    #key = 'Todo'
 
     constructor(localStorage) {
         this.#storage = localStorage
     }
 
     save(tasks) {
-        throw new Error()
+        tasks.forEach(task => {
+            if (!(task instanceof Task)) throw new Error('Array must contain Tasks')
+        })
 
-        // this.#storage.setItem(this.#key, JSON.stringify(tasks))
+        this.#storage.setItem(this.#key, JSON.stringify(tasks))
     }
 
     load() {
