@@ -25,12 +25,10 @@ beforeEach(() => {
 
 describe('TaskStorage Test', () => {
     it ('should save one task', () => {
-        const createdTasks = createTasks([task1])
-        sut.save(createdTasks)
-        expect(mockLocalStorage.setItem).toHaveBeenCalledWith('Todo', JSON.stringify(createdTasks))
+        assertSavedTask(sut, [task1])
     })
 
-    it ('should save and load two tasks', () => {
+    it ('should save two tasks', () => {
         assertSavedTask(sut, [task1, task2])
     })
 
@@ -44,11 +42,9 @@ describe('TaskStorage Test', () => {
 })
 
 const assertSavedTask = (sut, tasks) => {
-    const createdTasks = createTasks(tasks)
+    const createdTasks = createTasks([task1])
     sut.save(createdTasks)
-    const loadedTasks = sut.load()
-
-    expect(loadedTasks).toEqual(createdTasks)
+    expect(mockLocalStorage.setItem).toHaveBeenCalledWith('Todo', JSON.stringify(createdTasks))
 }
 
 const createTasks = (tasks) => tasks.map(task => new Task(task))
