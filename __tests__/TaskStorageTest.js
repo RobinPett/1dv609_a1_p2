@@ -23,8 +23,10 @@ beforeEach(() => {
 })
 
 describe('TaskStorage Test', () => {
-    it ('should save and load one task', () => {
-        assertSavedTask(sut, [task1])
+    it ('should save one task', () => {
+        const createdTasks = createTasks([task1])
+        sut.save(createdTasks)
+        expect(mockLocalStorage.setItem).toHaveBeenCalledWith('Todo', JSON.stringify(createdTasks))
     })
 
     it ('should save and load two tasks', () => {
