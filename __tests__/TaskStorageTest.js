@@ -16,9 +16,10 @@ const task1 = 'Buy Milk'
 const task2 = 'Buy Bread'
 
 let sut
+let mockLocalStorage
 
 beforeEach(() => {
-    const mockLocalStorage = createMockLocalStorage()
+    mockLocalStorage = createMockLocalStorage()
     sut = new TaskStorage(mockLocalStorage)
 })
 
@@ -55,9 +56,9 @@ const createTasks = (tasks) => tasks.map(task => new Task(task))
 const createMockLocalStorage = () => {
     let savedItems = {}
     return {
-        setItem: (key, value) => {
+        setItem: jest.fn((key, value) => {
             savedItems[key] = value
-        },
+        }),
 
         getItem: (key) => {
             return savedItems[key]
