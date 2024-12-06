@@ -32,6 +32,15 @@ describe('TaskStorage Test', () => {
         assertSavedTask(sut, [task1, task2])
     })
 
+    it ('should load one task', () => {
+        const createdTasks = createTasks([task1])
+        const savedTasks = JSON.stringify(createTasks)
+        mockLocalStorage.getItem.mockReturnValueOnce(savedTasks)
+
+        const loadedTasks = sut.load()
+        expect(loadedTasks).toEqual(savedTasks)
+    })
+
     it ('should load empty task list', () => {
         expect(sut.load()).toStrictEqual([])
     })

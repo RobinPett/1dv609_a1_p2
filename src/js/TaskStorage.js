@@ -17,7 +17,7 @@ class TaskStorage {
     }
 
     load() {
-        return this.#getItem() ? JSON.parse(this.#getItem()) : []
+        return []
     }
 
     #getItem() {
