@@ -40,6 +40,19 @@ describe('TaskStorage Test', () => {
         expect(loadedTasks).toEqual(createdTasks)
     })
 
+    it ('should load a task with name, id and completed fields', () => {
+        const createdTasks = createTasks([task1])
+        const firstCreatedTask = createdTasks[0]
+        mockLocalStorage.getItem.mockReturnValueOnce(createdTasks)
+
+        const loadedTasks = sut.load()
+        const firstLoadedTask = loadedTasks[0]
+        
+        expect(firstLoadedTask.name).toBe(firstCreatedTask.getName())
+        expect(firstLoadedTask.id).toBe(firstCreatedTask.getId())
+        expect(firstLoadedTask.completed).toBe(firstCreatedTask.isCompleted())
+    })
+
     it ('should load empty task list', () => {
         expect(sut.load()).toStrictEqual([])
     })
