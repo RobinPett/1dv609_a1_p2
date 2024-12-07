@@ -7,7 +7,12 @@ jest.mock('../src/js/Task', () => {
         default: class MockTask {
             constructor(name) {
                 this.name = name
+                this.id = 'mockId'
+                this.completed = false
             }
+            getName() { return this.name }
+            getId() { return this.id }   
+            isCompleted() { return this.completed }
         }
     }
 })
