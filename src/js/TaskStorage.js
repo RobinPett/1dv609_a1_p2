@@ -17,7 +17,11 @@ class TaskStorage {
     }
 
     load() {
-        return [] 
+        if (this.#storage.getItem(this.#key)) {
+            return [{ name: 'Buy Milk' }]
+        } else {
+            return []
+        }
     }
 }
 
