@@ -34,11 +34,10 @@ describe('TaskStorage Test', () => {
 
     it ('should load one task', () => {
         const createdTasks = createTasks([task1])
-        const savedTasks = JSON.stringify(createTasks)
-        mockLocalStorage.getItem.mockReturnValueOnce(savedTasks)
+        mockLocalStorage.getItem.mockReturnValueOnce(createdTasks)
 
         const loadedTasks = sut.load()
-        expect(loadedTasks).toEqual(savedTasks)
+        expect(loadedTasks).toEqual(createdTasks)
     })
 
     it ('should load empty task list', () => {
@@ -65,8 +64,6 @@ const createMockLocalStorage = () => {
             savedItems[key] = value
         }),
 
-        getItem: (key) => {
-            return savedItems[key]
-        }
+        getItem: jest.fn()
     }
 }

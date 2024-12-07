@@ -17,11 +17,7 @@ class TaskStorage {
     }
 
     load() {
-        return []
-    }
-
-    #getItem() {
-        return this.#storage.getItem(this.#key)
+        return [] 
     }
 }
 
