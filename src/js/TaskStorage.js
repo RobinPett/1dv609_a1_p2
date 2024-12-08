@@ -17,7 +17,8 @@ class TaskStorage {
     }
 
     load() {
-        return this.#storage.getItem(this.#key) ? [{ name: 'Buy Milk', id: 'mockId', completed: false }] : []
+        const tasks = this.#storage.getItem(this.#key)
+        return tasks ? tasks : []
     }
 }
 
