@@ -40,7 +40,16 @@ describe('TaskManager class test', () => {
         const mockTask = createMockTask(buyMilk)
         sut.loadFromStorage()
         const savedTasks = sut.getTasks()
+        console.log(savedTasks)
         expect(savedTasks).toEqual([mockTask])
+    })
+
+    it ('should load two tasks from storage', () => {
+        const mockTask1 = createMockTask(buyMilk)
+        const mockTask2 = createMockTask(buyBread)
+        sut.loadFromStorage()
+        const savedTasks = sut.getTasks()
+        expect(savedTasks).toEqual([mockTask1, mockTask2])
     })
 
     it ('should inject storage into TaskManager', () => {
