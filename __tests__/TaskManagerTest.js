@@ -9,7 +9,7 @@ const buyBread = 'Buy bread'
 let sut
 
 beforeEach(() => {
-    sut = new TaskManager()
+    sut = new TaskManager(mockStorage)
 })
 
 describe('TaskManager class test', () => {
@@ -109,3 +109,8 @@ createMockTask = (task) => {
     Task.mockImplementationOnce(() => taskMock)
     return taskMock
 }
+
+const mockStorage = {
+    save: jest.fn(),
+    load: jest.fn()
+}   
