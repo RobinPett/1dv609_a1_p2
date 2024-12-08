@@ -40,7 +40,7 @@ describe('TaskManager class test', () => {
         const mockTask = createMockTask(buyMilk)
         sut.loadFromStorage()
         const savedTasks = sut.getTasks()
-        expect(savedTasks).toEqual(mockTask)
+        expect(savedTasks).toEqual([mockTask])
     })
 })
 

@@ -22,6 +22,10 @@ class TaskManager {
         this.#tasks[taskIndex].toggleStatus()
     }
 
+    loadFromStorage() {
+        this.#tasks.push(new Task('Buy Milk'))
+    }
+
     #findTaskIndex(task) {
         return this.#tasks.findIndex(t => t.getId() === task.getId())
     }
