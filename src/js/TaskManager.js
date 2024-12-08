@@ -2,10 +2,10 @@ import Task from "./Task"
 
 class TaskManager {
     #tasks = []
-    storage
+    #storage
 
     constructor(storage) {
-        this.storage = storage
+        this.#storage = storage
     }
 
     addTask(task) {
@@ -29,7 +29,7 @@ class TaskManager {
 
     loadFromStorage() {
         this.#tasks.push(new Task('Buy Milk'))
-        this.storage.load()
+        this.#storage.load()
     }
 
     #findTaskIndex(task) {
