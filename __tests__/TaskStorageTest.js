@@ -52,6 +52,11 @@ describe('TaskStorage Test', () => {
         expect(firstLoadedTask.completed).toBe(firstCreatedTask.isCompleted())
     })
 
+    it ('should load two tasks', () => {
+        const {loadedTasks, createdTasks} = loadTasks(sut, [task1, task2])
+        expect(loadedTasks).toEqual(createdTasks)
+    })
+
     it ('should load empty task list', () => {
         expect(sut.load()).toStrictEqual([])
     })
