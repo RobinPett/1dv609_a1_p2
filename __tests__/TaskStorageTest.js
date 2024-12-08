@@ -38,20 +38,14 @@ describe('TaskStorage Test', () => {
     })
 
     it ('should load one task', () => {
-        const createdTasks = createTasks([task1])
-        mockLocalStorage.getItem.mockReturnValueOnce(createdTasks)
-
-        const loadedTasks = sut.load()
+        const {loadedTasks, createdTasks} = loadTasks(sut, [task1])
         expect(loadedTasks).toEqual(createdTasks)
     })
 
     it ('should load a task with name, id and completed fields', () => {
-        const createdTasks = createTasks([task1])
-        const firstCreatedTask = createdTasks[0]
-        mockLocalStorage.getItem.mockReturnValueOnce(createdTasks)
-
-        const loadedTasks = sut.load()
+        const {loadedTasks, createdTasks} = loadTasks(sut, [task1])
         const firstLoadedTask = loadedTasks[0]
+        const firstCreatedTask = createdTasks[0]
         
         expect(firstLoadedTask.name).toBe(firstCreatedTask.getName())
         expect(firstLoadedTask.id).toBe(firstCreatedTask.getId())
@@ -68,9 +62,16 @@ describe('TaskStorage Test', () => {
 })
 
 const assertSavedTask = (sut, tasks) => {
-    const createdTasks = createTasks([task1])
+    const createdTasks = createTasks(tasks)
     sut.save(createdTasks)
     expect(mockLocalStorage.setItem).toHaveBeenCalledWith('Todo', JSON.stringify(createdTasks))
+}
+
+const loadTasks = (sut, tasks) => {
+    const createdTasks = createTasks(tasks)
+    mockLocalStorage.getItem.mockReturnValueOnce(createdTasks)
+    const loadedTasks = sut.load()
+    return {loadedTasks, createdTasks}
 }
 
 const createTasks = (tasks) => tasks.map(task => new Task(task))
