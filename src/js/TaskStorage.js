@@ -18,7 +18,7 @@ class TaskStorage {
 
     load() {
         const tasks = this.#storage.getItem(this.#key)
-        return tasks ? tasks : []
+        return tasks ? JSON.parse(tasks) : []
     }
 }
 

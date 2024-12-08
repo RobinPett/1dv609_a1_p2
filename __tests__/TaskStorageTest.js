@@ -74,7 +74,7 @@ const assertSavedTask = (sut, tasks) => {
 
 const loadTasks = (sut, tasks) => {
     const createdTasks = createTasks(tasks)
-    mockLocalStorage.getItem.mockReturnValueOnce(createdTasks)
+    mockLocalStorage.getItem.mockReturnValueOnce(JSON.stringify(createdTasks))
     const loadedTasks = sut.load()
     return {loadedTasks, createdTasks}
 }
