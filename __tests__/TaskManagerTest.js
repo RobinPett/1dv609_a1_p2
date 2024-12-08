@@ -3,9 +3,10 @@ import Task from "../src/js/Task"
 
 jest.mock("../src/js/Task")
 
-let sut
 const buyMilk = 'Buy milk'
 const buyBread = 'Buy bread'
+
+let sut
 
 beforeEach(() => {
     sut = new TaskManager()
@@ -33,6 +34,13 @@ describe('TaskManager class test', () => {
         const toggledTask = addTaskAndToggleStatus(sut, buyMilk)
         sut.toggleStatus(toggledTask) // Completed: True
         assertTaskStatus(toggledTask, false)
+    })
+
+    it ('should load a task from storage', () => {
+        const mockTask = createMockTask(buyMilk)
+        sut.loadFromStorage()
+        const savedTasks = sut.getTasks()
+        expect(savedTasks).toEqual(mockTask)
     })
 })
 
