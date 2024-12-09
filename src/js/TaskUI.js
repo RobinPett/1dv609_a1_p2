@@ -20,6 +20,10 @@ class TaskUI {
 
             const checkbox = this.#document.createElement('input')
             checkbox.setAttribute('type', 'checkbox')
+            
+            if(task.isCompleted()) { 
+                checkbox.click() 
+            }
 
             listElement.appendChild(checkbox)
 
