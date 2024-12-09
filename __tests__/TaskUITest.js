@@ -29,11 +29,8 @@ describe('TaskUI Test', () => {
         const ui = new TaskUI(document, mockTaskManager)
 
         ui.renderTasks()
-
-        console.log(document.body.innerHTML)
     
         const taskContainer = document.getElementById('task-list')
-        console.log(taskContainer)
         expect(taskContainer.innerHTML).toContain('Buy milk')
     })
 })
