@@ -22,29 +22,32 @@ describe('TaskUI Test', () => {
     })
 
     it ('should render a task with id', () => {
-        const mockedTask = new Task(buyMilk)
-    
-        mockTaskManager.getTasks.mockReturnValueOnce([mockedTask])
-    
-        sut.renderTasks()
-        const taskElement = document.getElementById(mockedTask.getId())
+        const mockedTasks = mockAndRenderTasks(sut, [buyMilk])
+        const mockedBuyMilkTask = mockedTasks[0]
+        const taskElement = document.getElementById(mockedBuyMilkTask.getId())
 
-        expect(taskElement.id).toBe(mockedTask.getId())
+        expect(taskElement.id).toBe(mockedBuyMilkTask.getId())
     })
 })
 
 const assertTaskRendering = (sut, tasks) => {
-    const mockedTasks = tasks.map(task => { return new Task(task)})
-    console.log(mockedTasks)
-
-    mockTaskManager.getTasks.mockReturnValueOnce(mockedTasks)
-
-    sut.renderTasks()
+    mockAndRenderTasks(sut, tasks)
     const taskContainer = document.getElementById('task-list')
 
     tasks.forEach((task) => {
         expect (taskContainer.innerHTML).toContain(task)
     })
+}
+
+const mockAndRenderTasks = (sut, tasks) => {
+    const mockedTasks = createMockTasks(tasks)
+    mockTaskManager.getTasks.mockReturnValueOnce(mockedTasks)
+    sut.renderTasks()
+    return mockedTasks
+}
+
+const createMockTasks = (tasks) => {
+    return tasks.map(task => { return new Task(task)})
 }
 
 const mockTaskManager = {
