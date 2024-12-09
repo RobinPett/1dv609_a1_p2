@@ -1,4 +1,4 @@
-import TaskUI from '../src/TaskUi'
+import TaskUI from '../src/js/TaskUI'
 import Task from '../src/js/Task'
 
 const mockTaskManager = {
@@ -24,12 +24,13 @@ jest.mock('../src/js/Task', () => {
 describe('TaskUI Test', () => {
     it ('should render one task', () => {
         const mockTask = new Task('Buy milk')
-
-        mockTaskManager.getTasks.mockReturnValue(mockTask)
+        mockTaskManager.getTasks.mockReturnValue([mockTask])
+        
         const ui = new TaskUI(document, mockTaskManager)
 
         ui.renderTasks()
 
-        expect(document.innerHTML).toContain('Buy milk')
+        const taskContainer = document.querySelector('task-list')
+        expect(taskContainer.innerHTML).toContain('Buy milk')
     })
 })
