@@ -20,6 +20,17 @@ describe('TaskUI Test', () => {
     it ('should render two tasks', async () => {
         assertTaskRendering(sut, [buyMilk, buyBread])
     })
+
+    it ('should render a task with id', () => {
+        const mockedTask = new Task(buyMilk)
+    
+        mockTaskManager.getTasks.mockReturnValueOnce([mockedTask])
+    
+        sut.renderTasks()
+        const taskElement = document.getElementById(mockedTask.getId())
+
+        expect(taskElement.innerHTML).toContain(mockedTask.getId())
+    })
 })
 
 const assertTaskRendering = (sut, tasks) => {
