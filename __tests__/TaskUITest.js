@@ -28,6 +28,15 @@ describe('TaskUI Test', () => {
 
         expect(taskElement.id).toBe(mockedBuyMilkTask.getId())
     })
+
+    it ('should render a task with complete status as a checkbox', () => {
+        const mockedTasks = mockAndRenderTasks(sut, [buyMilk])
+        const mockedBuyMilkTask = mockedTasks[0]
+        const taskElement = document.getElementById(mockedBuyMilkTask.getId())
+        const checkbox = taskElement.querySelector('input[type="checkbox"]')
+
+        expect(taskElement.innerHTML).toContain(checkbox.innerHTML)
+    })
 })
 
 const assertTaskRendering = (sut, tasks) => {
