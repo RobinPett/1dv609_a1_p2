@@ -34,8 +34,8 @@ describe('TaskUI Test', () => {
         const mockedBuyMilkTask = mockedTasks[0]
         const taskElement = document.getElementById(mockedBuyMilkTask.getId())
         const checkbox = taskElement.querySelector('input[type="checkbox"]')
-
-        expect(taskElement.innerHTML).toContain(checkbox.innerHTML)
+        
+        expect(taskElement.contains(checkbox)).toBeTruthy()
     })
 })
 

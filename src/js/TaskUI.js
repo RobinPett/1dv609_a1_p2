@@ -14,6 +14,11 @@ class TaskUI {
             const listElement = this.document.createElement('li')
             listElement.innerHTML = task.getName()
             listElement.setAttribute('id', task.getId())
+
+            const checkbox = this.document.createElement('input')
+            checkbox.setAttribute('type', 'checkbox')
+            listElement.appendChild(checkbox)
+
             taskList.appendChild(listElement)
         })
 
