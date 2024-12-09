@@ -13,6 +13,7 @@ class TaskUI {
         allTasks.forEach(task => {
             const listElement = this.document.createElement('li')
             listElement.innerHTML = task.getName()
+            listElement.setAttribute('id', task.getId())
             taskList.appendChild(listElement)
         })
 

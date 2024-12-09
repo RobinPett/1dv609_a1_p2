@@ -29,7 +29,7 @@ describe('TaskUI Test', () => {
         sut.renderTasks()
         const taskElement = document.getElementById(mockedTask.getId())
 
-        expect(taskElement.innerHTML).toContain(mockedTask.getId())
+        expect(taskElement.id).toBe(mockedTask.getId())
     })
 })
 
