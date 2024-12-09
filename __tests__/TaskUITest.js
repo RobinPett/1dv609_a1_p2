@@ -21,10 +21,14 @@ jest.mock('../src/js/Task', () => {
     }
 })
 
+beforeEach(() => {
+    document.body.innerHTML = ''
+})
+
 describe('TaskUI Test', () => {
     it ('should render one task', async () => {
         const mockTask = new Task('Buy milk')
-        mockTaskManager.getTasks.mockReturnValue([mockTask])
+        mockTaskManager.getTasks.mockReturnValueOnce([mockTask])
         
         const ui = new TaskUI(document, mockTaskManager)
 
@@ -37,10 +41,9 @@ describe('TaskUI Test', () => {
     it ('should render two tasks', async () => {
         const mockTask1 = new Task('Buy milk')
         const mockTask2 = new Task('Buy bread')
-
-        mockTaskManager.getTasks.mockReturnValue([mockTask1, mockTask2])
         
         const ui = new TaskUI(document, mockTaskManager)
+        mockTaskManager.getTasks.mockReturnValueOnce([mockTask1, mockTask2])
 
         ui.renderTasks()
     

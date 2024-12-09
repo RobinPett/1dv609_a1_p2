@@ -8,10 +8,14 @@ class TaskUI {
         const taskList = this.document.createElement('div')
         taskList.setAttribute('id', 'task-list')
 
-        const listedTask = this.document.createElement('li')
-        listedTask.innerHTML = 'Buy milk'
+        const allTasks = this.taskManager.getTasks()
 
-        taskList.appendChild(listedTask)
+        allTasks.forEach(task => {
+            const listElement = this.document.createElement('li')
+            listElement.innerHTML = task.getName()
+            taskList.appendChild(listElement)
+        })
+
         this.document.body.appendChild(taskList)
     }
 }
