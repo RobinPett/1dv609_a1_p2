@@ -1,6 +1,41 @@
 import TaskUI from '../src/js/TaskUI'
 import Task from '../src/js/Task'
 
+let sut
+
+const buyMilk = 'Buy milk'
+const buyBread = 'Buy bread'
+
+beforeEach(() => {
+    document.body.innerHTML = ''
+    
+    sut = new TaskUI(document, mockTaskManager)
+})
+
+describe('TaskUI Test', () => {
+    it ('should render one task', async () => {
+        assertTaskRendering(sut, [buyMilk])
+    })
+
+    it ('should render two tasks', async () => {
+        assertTaskRendering(sut, [buyMilk, buyBread])
+    })
+})
+
+const assertTaskRendering = (sut, tasks) => {
+    const mockedTasks = tasks.map(task => { return new Task(task)})
+    console.log(mockedTasks)
+
+    mockTaskManager.getTasks.mockReturnValueOnce(mockedTasks)
+
+    sut.renderTasks()
+    const taskContainer = document.getElementById('task-list')
+
+    tasks.forEach((task) => {
+        expect (taskContainer.innerHTML).toContain(task)
+    })
+}
+
 const mockTaskManager = {
     getTasks: jest.fn()
 }
@@ -19,36 +54,4 @@ jest.mock('../src/js/Task', () => {
             isCompleted() { return this.completed }
         }
     }
-})
-
-beforeEach(() => {
-    document.body.innerHTML = ''
-})
-
-describe('TaskUI Test', () => {
-    it ('should render one task', async () => {
-        const mockTask = new Task('Buy milk')
-        mockTaskManager.getTasks.mockReturnValueOnce([mockTask])
-        
-        const ui = new TaskUI(document, mockTaskManager)
-
-        ui.renderTasks()
-    
-        const taskContainer = document.getElementById('task-list')
-        expect(taskContainer.innerHTML).toContain('Buy milk')
-    })
-
-    it ('should render two tasks', async () => {
-        const mockTask1 = new Task('Buy milk')
-        const mockTask2 = new Task('Buy bread')
-        
-        const ui = new TaskUI(document, mockTaskManager)
-        mockTaskManager.getTasks.mockReturnValueOnce([mockTask1, mockTask2])
-
-        ui.renderTasks()
-    
-        const taskContainer = document.getElementById('task-list')
-        expect(taskContainer.innerHTML).toContain('Buy milk')
-        expect(taskContainer.innerHTML).toContain('Buy bread')
-    })
 })
