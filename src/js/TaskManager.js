@@ -28,8 +28,13 @@ class TaskManager {
     }
 
     loadFromStorage() {
-        this.#tasks.push(new Task('Buy Milk'))
-        this.#storage.load()
+        const loadedTasks = this.#storage.load()
+
+        if (!loadedTasks) return
+
+        loadedTasks.forEach(task => {
+            this.#tasks.push(new Task(task.name))
+        })
     }
 
     #findTaskIndex(task) {

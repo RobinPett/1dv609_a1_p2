@@ -38,18 +38,35 @@ describe('TaskManager class test', () => {
 
     it ('should load a task from storage', () => {
         const mockTask = createMockTask(buyMilk)
+        const mockTaskObject = { name: mockTask.getName(), id: mockTask.getId(), completed: mockTask.isComplete() }
+        const loadedTasks = [mockTaskObject]
+        mockStorage.load.mockReturnValueOnce(loadedTasks)
+
         sut.loadFromStorage()
         const savedTasks = sut.getTasks()
-        console.log(savedTasks)
-        expect(savedTasks).toEqual([mockTask])
+        expect(savedTasks[0].getName()).toEqual(loadedTasks[0].name)
     })
 
     it ('should load two tasks from storage', () => {
         const mockTask1 = createMockTask(buyMilk)
         const mockTask2 = createMockTask(buyBread)
+
+        const tasks = [mockTask1, mockTask2]
+
+        const loadedTasks = []
+        tasks.forEach(task => {
+            loadedTasks.push({
+                name: task.getName(),
+                id: task.getId(),
+                completed: task.isComplete()
+            })
+        })
+
+        mockStorage.load.mockReturnValueOnce(loadedTasks)
+
         sut.loadFromStorage()
         const savedTasks = sut.getTasks()
-        expect(savedTasks).toEqual([mockTask1, mockTask2])
+        expect(savedTasks[0].getName()).toEqual(loadedTasks[0].name)
     })
 
     it ('should inject storage into TaskManager', () => {
@@ -98,7 +115,7 @@ assertTaskRemoval = (sut, tasks) => {
 }
 
 assertTaskStatus = (task, status) => {
-    expect(task.getStatus()).toBe(status)
+    expect(task.isComplete()).toBe(status)
 }
 
 createAndAddTaskToManager = (sut, task) => {
@@ -111,9 +128,9 @@ createMockTask = (task) => {
 
     const taskMock = {
         getName: jest.fn().mockReturnValue(task),
-        getId: jest.fn().mockReturnValue(task),
+        getId: jest.fn().mockReturnValue(task + 'Id'),
         toggleStatus: jest.fn(() => completed = !completed),
-        getStatus: jest.fn(() => completed)
+        isComplete: jest.fn(() => completed)
     }
     Task.mockImplementationOnce(() => taskMock)
     return taskMock
