@@ -33,4 +33,19 @@ describe('TaskUI Test', () => {
         const taskContainer = document.getElementById('task-list')
         expect(taskContainer.innerHTML).toContain('Buy milk')
     })
+
+    it ('should render two tasks', async () => {
+        const mockTask1 = new Task('Buy milk')
+        const mockTask2 = new Task('Buy bread')
+
+        mockTaskManager.getTasks.mockReturnValue([mockTask1, mockTask2])
+        
+        const ui = new TaskUI(document, mockTaskManager)
+
+        ui.renderTasks()
+    
+        const taskContainer = document.getElementById('task-list')
+        expect(taskContainer.innerHTML).toContain('Buy milk')
+        expect(taskContainer.innerHTML).toContain('Buy bread')
+    })
 })
