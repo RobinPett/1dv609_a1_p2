@@ -28,11 +28,11 @@ class TaskManager {
     }
 
     loadFromStorage() {
-        const loadedTasks = this.#storage.load()
+        const tasksFromStorage = this.#storage.load()
 
-        if (!loadedTasks) return
+        if (!tasksFromStorage) return
 
-        loadedTasks.forEach(task => {
+        tasksFromStorage.forEach(task => {
             this.#tasks.push(new Task(task.name))
         })
     }

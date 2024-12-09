@@ -37,36 +37,11 @@ describe('TaskManager class test', () => {
     })
 
     it ('should load a task from storage', () => {
-        const mockTask = createMockTask(buyMilk)
-        const mockTaskObject = { name: mockTask.getName(), id: mockTask.getId(), completed: mockTask.isComplete() }
-        const loadedTasks = [mockTaskObject]
-        mockStorage.load.mockReturnValueOnce(loadedTasks)
-
-        sut.loadFromStorage()
-        const savedTasks = sut.getTasks()
-        expect(savedTasks[0].getName()).toEqual(loadedTasks[0].name)
+        assertTaskLoaded(sut, [buyMilk])
     })
 
     it ('should load two tasks from storage', () => {
-        const mockTask1 = createMockTask(buyMilk)
-        const mockTask2 = createMockTask(buyBread)
-
-        const tasks = [mockTask1, mockTask2]
-
-        const loadedTasks = []
-        tasks.forEach(task => {
-            loadedTasks.push({
-                name: task.getName(),
-                id: task.getId(),
-                completed: task.isComplete()
-            })
-        })
-
-        mockStorage.load.mockReturnValueOnce(loadedTasks)
-
-        sut.loadFromStorage()
-        const savedTasks = sut.getTasks()
-        expect(savedTasks[0].getName()).toEqual(loadedTasks[0].name)
+        assertTaskLoaded(sut, [buyMilk, buyBread])
     })
 
     it ('should inject storage into TaskManager', () => {
@@ -116,6 +91,28 @@ assertTaskRemoval = (sut, tasks) => {
 
 assertTaskStatus = (task, status) => {
     expect(task.isComplete()).toBe(status)
+}
+
+assertTaskLoaded = (sut, tasks) => {
+    const mockedTasks = tasks.map(task => createMockTask(task))
+
+    const loadedTasks = []
+    mockedTasks.forEach(task => {
+        loadedTasks.push({
+            name: task.getName(),
+            id: task.getId(),
+            completed: task.isComplete()
+        })
+    })
+
+    mockStorage.load.mockReturnValueOnce(loadedTasks)
+
+    sut.loadFromStorage()
+    const tasksFromStorage = sut.getTasks()
+
+    loadedTasks.forEach((task, index) => {
+        expect(task.name).toBe(tasksFromStorage[index].getName())
+    })
 }
 
 createAndAddTaskToManager = (sut, task) => {
