@@ -20,6 +20,8 @@ class TaskUI {
 
             const checkbox = this.#document.createElement('input')
             checkbox.setAttribute('type', 'checkbox')
+
+            checkbox.addEventListener('change', (event) => task.toggleStatus())
             
             if(task.isCompleted()) { 
                 checkbox.click() 

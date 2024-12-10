@@ -109,6 +109,7 @@ jest.mock('../src/js/Task', () => {
             getName() { return this.name }
             getId() { return this.id }   
             isCompleted() { return this.completed }
+            toggleStatus() { this.completed = !this.completed }
         }
     }
 })
