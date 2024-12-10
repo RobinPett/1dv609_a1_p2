@@ -40,13 +40,13 @@ describe('TaskUI Test', () => {
 
     it ('should render a checked checkbox when task complete status is true', () => {
         const mockedTasks = createMockTasks([buyMilk])
-        const mockedBuyMilkTask = mockedTasks[0]
+        const buyMilkTask = mockedTasks[0]
 
-        jest.spyOn(mockedBuyMilkTask, 'isCompleted').mockReturnValue(true)
+        jest.spyOn(buyMilkTask, 'isCompleted').mockReturnValue(true)
         mockTaskManager.getTasks.mockReturnValueOnce(mockedTasks)
         sut.renderTasks()
 
-        const { taskElement, checkbox } = getElements(mockedBuyMilkTask)
+        const { taskElement, checkbox } = getElements(buyMilkTask)
 
         expect(checkbox.checked).toBeTruthy()
     })

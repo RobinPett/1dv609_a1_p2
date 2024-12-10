@@ -14,25 +14,29 @@ class TaskUI {
         const allTasks = this.#taskManager.getTasks()
 
         allTasks.forEach(task => {
-            const listElement = this.#document.createElement('li')
-            listElement.innerHTML = task.getName()
-            listElement.setAttribute('id', task.getId())
-
-            const checkbox = this.#document.createElement('input')
-            checkbox.setAttribute('type', 'checkbox')
-
+            const { listElement, checkbox } = this.createTaskElements(task)
             checkbox.addEventListener('change', (event) => task.toggleStatus())
             
             if(task.isCompleted()) { 
                 checkbox.click() 
             }
 
-            listElement.appendChild(checkbox)
-
             taskList.appendChild(listElement)
         })
 
         this.#document.body.appendChild(taskList)
+    }
+
+    createTaskElements(task) {
+        const listElement = this.#document.createElement('li')
+        listElement.innerHTML = task.getName()
+        listElement.setAttribute('id', task.getId())
+
+        const checkbox = this.#document.createElement('input')
+        checkbox.setAttribute('type', 'checkbox')
+        listElement.appendChild(checkbox)
+
+        return {listElement, checkbox}
     }
 }
 
