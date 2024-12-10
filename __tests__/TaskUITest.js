@@ -45,13 +45,25 @@ describe('TaskUI Test', () => {
         jest.spyOn(mockedBuyMilkTask, 'isCompleted').mockReturnValue(true)
         mockTaskManager.getTasks.mockReturnValueOnce(mockedTasks)
         sut.renderTasks()
-        
+
         const { taskElement, checkbox } = getElements(mockedBuyMilkTask)
 
         expect(checkbox.checked).toBeTruthy()
     })
-})
 
+    it ('should set a task to complete when checkbox is clicked', () => {
+        const mockedTasks = createMockTasks([buyMilk])
+        const buyMilkTask = mockedTasks[0]
+
+        mockTaskManager.getTasks.mockReturnValueOnce(mockedTasks)
+        sut.renderTasks()
+
+        const { taskElement, checkbox } = getElements(buyMilkTask)
+        checkbox.click()
+
+        expect(buyMilkTask.isCompleted()).toBeTruthy()
+    })
+})
 const getElements = (mockedTask) => {
     const taskElement = document.getElementById(mockedTask.getId())
     const checkbox = taskElement.querySelector('input[type="checkbox"]')
