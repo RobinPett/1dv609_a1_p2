@@ -32,8 +32,8 @@ describe('TaskUI Test', () => {
     it ('should render a task with complete status as a checkbox', () => {
         const mockedTasks = mockAndRenderTasks(sut, [buyMilk])
         const mockedBuyMilkTask = mockedTasks[0]
-        const taskElement = document.getElementById(mockedBuyMilkTask.getId())
-        const checkbox = taskElement.querySelector('input[type="checkbox"]')
+
+        const { taskElement, checkbox } = getElements(mockedBuyMilkTask)
         
         expect(taskElement.contains(checkbox)).toBeTruthy()
     })
@@ -45,13 +45,21 @@ describe('TaskUI Test', () => {
         jest.spyOn(mockedBuyMilkTask, 'isCompleted').mockReturnValue(true)
         mockTaskManager.getTasks.mockReturnValueOnce(mockedTasks)
         sut.renderTasks()
-
-        const taskElement = document.getElementById(mockedBuyMilkTask.getId())
-        const checkbox = taskElement.querySelector('input[type="checkbox"]')
+        
+        const { taskElement, checkbox } = getElements(mockedBuyMilkTask)
 
         expect(checkbox.checked).toBeTruthy()
     })
 })
+
+const getElements = (mockedTask) => {
+    const taskElement = document.getElementById(mockedTask.getId())
+    const checkbox = taskElement.querySelector('input[type="checkbox"]')
+
+    return {taskElement, checkbox}
+}
+
+
 
 const assertTaskRendering = (sut, tasks) => {
     mockAndRenderTasks(sut, tasks)
