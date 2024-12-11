@@ -43,6 +43,10 @@ class TaskUI {
         const form = this.#document.createElement('form')
         form.setAttribute('id', 'task-form')
         this.#document.body.appendChild(form)
+
+        const textInput = this.#document.createElement('input')
+        textInput.setAttribute('type', 'text')
+        form.appendChild(textInput)
     }
 }
 
