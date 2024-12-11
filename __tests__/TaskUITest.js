@@ -79,6 +79,17 @@ describe('TaskUI Test', () => {
         const submitButton = 'input[type="submit"]'
         assertRenderingElementInForm(submitButton)
     })
+
+    it ('should use text input from form to add new task to manager', () => {
+        sut.renderUI()
+        const input = document.querySelector('input[type="text"]')
+        const submitButton = document.querySelector('input[type="submit"]')
+
+        input.value = buyMilk
+        submitButton.click()
+
+        expect(mockTaskManager.addTask).toHaveBeenCalledWith(buyMilk)
+    })
 })
 
 const assertRenderingElementInForm = (childName) => {
@@ -121,7 +132,8 @@ const createMockTasks = (tasks) => {
 }
 
 const mockTaskManager = {
-    getTasks: jest.fn()
+    getTasks: jest.fn(),
+    addTask: jest.fn()
 }
 
 jest.mock('../src/js/Task', () => {
