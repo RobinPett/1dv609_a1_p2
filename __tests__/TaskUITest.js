@@ -71,12 +71,18 @@ describe('TaskUI Test', () => {
     })
 
     it ('should render a text input inside form', () => {
-        sut.renderUI()
-        const form = document.getElementById('task-form')
-        const textInput = document.querySelector('input[type="text"]')
-        expect(form.contains(textInput)).toBeTruthy()
+        const form = 'task-form'
+        const textInput = 'input[type="text"]'
+        assertRenderingElement(form, textInput)
     })
 })
+
+const assertRenderingElement = (containerID, childName) => {
+    sut.renderUI()
+    const containerElement = document.getElementById(containerID)
+    const childElement = document.querySelector(childName)
+    expect(containerElement.contains(childElement)).toBeTruthy()
+}
 
 
 
