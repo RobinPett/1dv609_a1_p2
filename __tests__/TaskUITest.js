@@ -75,12 +75,19 @@ describe('TaskUI Test', () => {
         const textInput = 'input[type="text"]'
         assertRenderingElement(form, textInput)
     })
+
+    it ('should render a submit button inside form', () => {
+        const form = 'task-form'
+        const submitButton = 'input[type="submit"]'
+        assertRenderingElement(form, submitButton)
+    })
 })
 
 const assertRenderingElement = (containerID, childName) => {
     sut.renderUI()
     const containerElement = document.getElementById(containerID)
     const childElement = document.querySelector(childName)
+    console.log(containerElement.innerHTML)
     expect(containerElement.contains(childElement)).toBeTruthy()
 }
 
