@@ -38,6 +38,12 @@ class TaskUI {
 
         return {listElement, checkbox}
     }
+
+    renderUI() {
+        const form = this.#document.createElement('form')
+        form.setAttribute('id', 'task-form')
+        this.#document.body.appendChild(form)
+    }
 }
 
 export default TaskUI

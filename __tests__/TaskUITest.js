@@ -67,7 +67,7 @@ describe('TaskUI Test', () => {
     it ('should render a form', () => {
         sut.renderUI()
         const form = document.getElementById('task-form')
-        expect(document.body.innerHTML).toContain()
+        expect(document.body.contains(form)).toBeTruthy()
     })
 })
 
