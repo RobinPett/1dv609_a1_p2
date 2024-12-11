@@ -63,7 +63,16 @@ describe('TaskUI Test', () => {
 
         expect(buyMilkTask.isCompleted()).toBeTruthy()
     })
+
+    it ('should render a form', () => {
+        sut.renderUI()
+        const form = document.getElementById('task-form')
+        expect(document.body.innerHTML).toContain()
+    })
 })
+
+
+
 const getElements = (mockedTask) => {
     const taskElement = document.getElementById(mockedTask.getId())
     const checkbox = taskElement.querySelector('input[type="checkbox"]')
