@@ -12,10 +12,6 @@ class TaskUI {
         taskList.setAttribute('id', 'task-list')
 
         const allTasks = this.#taskManager.getTasks()
-        
-        console.log('All tasks')
-        console.log(allTasks)
-
         allTasks.forEach(task => {
             const { listElement, checkbox } = this.createTaskElements(task)
             checkbox.addEventListener('change', (event) => task.toggleStatus())
@@ -35,8 +31,7 @@ class TaskUI {
         listElement.innerHTML = task.getName()
         listElement.setAttribute('id', task.getId())
 
-        const checkbox = this.#document.createElement('input')
-        checkbox.setAttribute('type', 'checkbox')
+        const checkbox = this.#createInputElement('checkbox')
         listElement.appendChild(checkbox)
 
         return {listElement, checkbox}
@@ -53,7 +48,7 @@ class TaskUI {
         const submitButton = this.#createInputElement('submit')
         form.appendChild(submitButton)
 
-        form.addEventListener('submit', (event) => {this.handleSubmit(event, textInput)})
+        form.addEventListener('submit', (event) => { this.handleSubmit(event, textInput) })
     }
 
     handleSubmit(event, textInput) {

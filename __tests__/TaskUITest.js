@@ -113,16 +113,12 @@ const assertRenderingElementInForm = (childName) => {
     expect(containerElement.contains(childElement)).toBeTruthy()
 }
 
-
-
 const getElements = (mockedTask) => {
     const taskElement = document.getElementById(mockedTask.getId())
     const checkbox = taskElement.querySelector('input[type="checkbox"]')
 
     return {taskElement, checkbox}
 }
-
-
 
 const assertTaskRendering = (sut, tasks) => {
     mockAndRenderTasks(sut, tasks)
