@@ -51,6 +51,14 @@ class TaskUI {
         const submitButton = this.#document.createElement('input')
         submitButton.setAttribute('type', 'submit')
         form.appendChild(submitButton)
+
+        form.addEventListener('submit', (event) => {this.handleSubmit(event, textInput)})
+    }
+
+    handleSubmit(event, textInput) {
+        event.preventDefault()
+        const taskName = textInput.value
+        this.#taskManager.addTask(taskName)
     }
 }
 
