@@ -44,12 +44,10 @@ class TaskUI {
         form.setAttribute('id', 'task-form')
         this.#document.body.appendChild(form)
 
-        const textInput = this.#document.createElement('input')
-        textInput.setAttribute('type', 'text')
+        const textInput = this.#createInputElement('text')
         form.appendChild(textInput)
 
-        const submitButton = this.#document.createElement('input')
-        submitButton.setAttribute('type', 'submit')
+        const submitButton = this.#createInputElement('submit')
         form.appendChild(submitButton)
 
         form.addEventListener('submit', (event) => {this.handleSubmit(event, textInput)})
@@ -59,6 +57,12 @@ class TaskUI {
         event.preventDefault()
         const taskName = textInput.value
         this.#taskManager.addTask(taskName)
+    }
+
+    #createInputElement(inputType) {
+        const element = this.#document.createElement('input')
+        element.setAttribute('type', inputType)
+        return element
     }
 }
 
