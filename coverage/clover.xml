@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1733259454206" clover="3.2.0">
-  <project timestamp="1733259454207" name="All files">
-    <metrics statements="29" coveredstatements="29" conditionals="6" coveredconditionals="6" methods="16" coveredmethods="16" elements="51" coveredelements="51" complexity="0" loc="29" ncloc="29" packages="1" files="3" classes="3"/>
+<coverage generated="1734023476738" clover="3.2.0">
+  <project timestamp="1734023476738" name="All files">
+    <metrics statements="68" coveredstatements="68" conditionals="12" coveredconditionals="12" methods="27" coveredmethods="27" elements="107" coveredelements="107" complexity="0" loc="68" ncloc="68" packages="1" files="4" classes="4"/>
     <file name="Task.js" path="C:\Users\plugg\Desktop\1DV609\assignments\1dv609_a1_p2\src\js\Task.js">
       <metrics statements="13" coveredstatements="13" conditionals="2" coveredconditionals="2" methods="7" coveredmethods="7"/>
       <line num="4" count="7" type="stmt"/>
@@ -19,26 +19,68 @@
       <line num="46" count="1" type="stmt"/>
     </file>
     <file name="TaskManager.js" path="C:\Users\plugg\Desktop\1DV609\assignments\1dv609_a1_p2\src\js\TaskManager.js">
-      <metrics statements="9" coveredstatements="9" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="5"/>
-      <line num="4" count="5" type="stmt"/>
-      <line num="7" count="7" type="stmt"/>
-      <line num="8" count="7" type="stmt"/>
-      <line num="12" count="8" type="stmt"/>
-      <line num="16" count="1" type="stmt"/>
-      <line num="17" count="1" type="stmt"/>
-      <line num="21" count="3" type="stmt"/>
-      <line num="22" count="3" type="stmt"/>
-      <line num="26" count="4" type="stmt"/>
+      <metrics statements="14" coveredstatements="14" conditionals="2" coveredconditionals="2" methods="8" coveredmethods="8"/>
+      <line num="4" count="9" type="stmt"/>
+      <line num="8" count="9" type="stmt"/>
+      <line num="12" count="7" type="stmt"/>
+      <line num="13" count="7" type="stmt"/>
+      <line num="17" count="10" type="stmt"/>
+      <line num="21" count="1" type="stmt"/>
+      <line num="22" count="1" type="stmt"/>
+      <line num="26" count="3" type="stmt"/>
+      <line num="27" count="3" type="stmt"/>
+      <line num="31" count="3" type="stmt"/>
+      <line num="33" count="3" type="cond" truecount="2" falsecount="0"/>
+      <line num="35" count="2" type="stmt"/>
+      <line num="36" count="3" type="stmt"/>
+      <line num="41" count="4" type="stmt"/>
     </file>
     <file name="TaskStorage.js" path="C:\Users\plugg\Desktop\1DV609\assignments\1dv609_a1_p2\src\js\TaskStorage.js">
       <metrics statements="7" coveredstatements="7" conditionals="4" coveredconditionals="4" methods="4" coveredmethods="4"/>
-      <line num="5" count="4" type="stmt"/>
-      <line num="8" count="4" type="stmt"/>
+      <line num="5" count="7" type="stmt"/>
+      <line num="8" count="7" type="stmt"/>
       <line num="12" count="3" type="stmt"/>
       <line num="13" count="4" type="cond" truecount="2" falsecount="0"/>
       <line num="16" count="2" type="stmt"/>
-      <line num="20" count="3" type="cond" truecount="2" falsecount="0"/>
-      <line num="24" count="5" type="stmt"/>
+      <line num="20" count="4" type="stmt"/>
+      <line num="21" count="4" type="cond" truecount="2" falsecount="0"/>
+    </file>
+    <file name="TaskUI.js" path="C:\Users\plugg\Desktop\1DV609\assignments\1dv609_a1_p2\src\js\TaskUI.js">
+      <metrics statements="34" coveredstatements="34" conditionals="4" coveredconditionals="4" methods="8" coveredmethods="8"/>
+      <line num="6" count="11" type="stmt"/>
+      <line num="7" count="11" type="stmt"/>
+      <line num="11" count="7" type="stmt"/>
+      <line num="12" count="7" type="stmt"/>
+      <line num="14" count="7" type="stmt"/>
+      <line num="15" count="7" type="stmt"/>
+      <line num="16" count="8" type="stmt"/>
+      <line num="17" count="8" type="stmt"/>
+      <line num="19" count="8" type="cond" truecount="2" falsecount="0"/>
+      <line num="20" count="1" type="stmt"/>
+      <line num="23" count="8" type="stmt"/>
+      <line num="26" count="7" type="stmt"/>
+      <line num="30" count="8" type="stmt"/>
+      <line num="31" count="8" type="stmt"/>
+      <line num="32" count="8" type="stmt"/>
+      <line num="34" count="8" type="stmt"/>
+      <line num="35" count="8" type="stmt"/>
+      <line num="37" count="8" type="stmt"/>
+      <line num="41" count="4" type="stmt"/>
+      <line num="42" count="4" type="stmt"/>
+      <line num="43" count="4" type="stmt"/>
+      <line num="45" count="4" type="stmt"/>
+      <line num="46" count="4" type="stmt"/>
+      <line num="48" count="4" type="stmt"/>
+      <line num="49" count="4" type="stmt"/>
+      <line num="51" count="4" type="stmt"/>
+      <line num="55" count="2" type="stmt"/>
+      <line num="56" count="2" type="stmt"/>
+      <line num="57" count="2" type="stmt"/>
+      <line num="59" count="2" type="cond" truecount="2" falsecount="0"/>
+      <line num="60" count="1" type="stmt"/>
+      <line num="65" count="16" type="stmt"/>
+      <line num="66" count="16" type="stmt"/>
+      <line num="67" count="16" type="stmt"/>
     </file>
   </project>
 </coverage>
