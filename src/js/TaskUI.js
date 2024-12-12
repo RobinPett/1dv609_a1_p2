@@ -12,6 +12,9 @@ class TaskUI {
         taskList.setAttribute('id', 'task-list')
 
         const allTasks = this.#taskManager.getTasks()
+        
+        console.log('All tasks')
+        console.log(allTasks)
 
         allTasks.forEach(task => {
             const { listElement, checkbox } = this.createTaskElements(task)
@@ -57,6 +60,10 @@ class TaskUI {
         event.preventDefault()
         const taskName = textInput.value
         this.#taskManager.addTask(taskName)
+
+        if (this.#taskManager.getTasks()) {
+            this.renderTasks()
+        }
     }
 
     #createInputElement(inputType) {

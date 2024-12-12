@@ -93,11 +93,14 @@ describe('TaskUI Test', () => {
 
     it('should render task list with new task after form submit', () => {
         const mockSubmitEvent = new Event('submit')
-        const textInput = {value: buyMilk}
-        
+        const textInput = { value: buyMilk }
+
+        const mockedTasks = createMockTasks([buyMilk])
+        mockTaskManager.getTasks.mockReturnValue(mockedTasks)
+
         sut.handleSubmit(mockSubmitEvent, textInput)
 
-        const taskList = document.getElementById('task-list')
+        const taskList = document.getElementById('task-list') 
         expect(taskList.innerHTML).toContain(buyMilk)
     })
 })
