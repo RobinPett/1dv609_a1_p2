@@ -90,6 +90,16 @@ describe('TaskUI Test', () => {
 
         expect(mockTaskManager.addTask).toHaveBeenCalledWith(buyMilk)
     })
+
+    it('should render task list with new task after form submit', () => {
+        const mockSubmitEvent = new Event('submit')
+        const textInput = {value: buyMilk}
+        
+        sut.handleSubmit(mockSubmitEvent, textInput)
+
+        const taskList = document.getElementById('task-list')
+        expect(taskList.innerHTML).toContain(buyMilk)
+    })
 })
 
 const assertRenderingElementInForm = (childName) => {
