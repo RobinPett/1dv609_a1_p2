@@ -103,6 +103,25 @@ describe('TaskUI Test', () => {
         const taskList = document.getElementById('task-list') 
         expect(taskList.innerHTML).toContain(buyMilk)
     })
+
+    it('should render two task after form submission', () => {
+        const tasks = [buyMilk, buyBread]
+        const mockedTasks = createMockTasks(tasks)
+        mockTaskManager.getTasks.mockReturnValue(mockedTasks)
+
+        tasks.forEach(task => {
+            const mockSubmitEvent = new Event('submit')
+            const textInput = { value: task }    
+            sut.handleSubmit(mockSubmitEvent, textInput)  
+        })
+
+        const taskList = document.getElementById('task-list') 
+        const allRenderedTasks = document.querySelectorAll('li')
+
+        expect(taskList.innerHTML).toContain(buyMilk)
+        expect(taskList.innerHTML).toContain(buyBread)
+        expect(allRenderedTasks.length).toBe(tasks.length)
+    })
 })
 
 const assertRenderingElementInForm = (childName) => {
