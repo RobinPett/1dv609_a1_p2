@@ -92,37 +92,32 @@ describe('TaskUI Test', () => {
     })
 
     it('should render task list with new task after form submit', () => {
-        const mockSubmitEvent = new Event('submit')
-        const textInput = { value: buyMilk }
-
-        const mockedTasks = createMockTasks([buyMilk])
-        mockTaskManager.getTasks.mockReturnValue(mockedTasks)
-
-        sut.handleSubmit(mockSubmitEvent, textInput)
-
-        const taskList = document.getElementById('task-list') 
-        expect(taskList.innerHTML).toContain(buyMilk)
+        assertRenderingAfterSubmission[buyMilk]
     })
 
     it('should render two task after form submission', () => {
-        const tasks = [buyMilk, buyBread]
-        const mockedTasks = createMockTasks(tasks)
-        mockTaskManager.getTasks.mockReturnValue(mockedTasks)
-
-        tasks.forEach(task => {
-            const mockSubmitEvent = new Event('submit')
-            const textInput = { value: task }    
-            sut.handleSubmit(mockSubmitEvent, textInput)  
-        })
-
-        const taskList = document.getElementById('task-list')
-        const allRenderedTasks = document.querySelectorAll('li')
-
-        expect(taskList.innerHTML).toContain(buyMilk)
-        expect(taskList.innerHTML).toContain(buyBread)
-        expect(allRenderedTasks.length).toBe(tasks.length)
+        assertRenderingAfterSubmission[buyMilk, buyBread]
     })
 })
+
+const assertRenderingAfterSubmission = (tasks) => {
+    const mockedTasks = createMockTasks(tasks)
+    mockTaskManager.getTasks.mockReturnValue(mockedTasks)
+
+    tasks.forEach(task => {
+        const mockSubmitEvent = new Event('submit')
+        const textInput = { value: task }    
+        sut.handleSubmit(mockSubmitEvent, textInput)  
+    })
+
+    const taskList = document.getElementById('task-list')
+    const allRenderedTasks = document.querySelectorAll('li')
+
+    tasks.forEach(task => {
+        expect(taskList.innerHTML).toContain(task)
+    })
+    expect(allRenderedTasks.length).toBe(tasks.length)
+}
 
 const assertRenderingElementInForm = (childName) => {
     sut.renderUI()
