@@ -5,11 +5,12 @@ class TaskUI {
     constructor(document, taskManager) {
         this.#document = document
         this.#taskManager = taskManager
+        this.taskList = this.createTaskList()
+        this.#document.body.appendChild(this.taskList)
     }
 
     renderTasks() {
-        const taskList = this.#document.createElement('div')
-        taskList.setAttribute('id', 'task-list')
+        this.taskList.innerHTML = '' // Remove all previous children
 
         const allTasks = this.#taskManager.getTasks()
         allTasks.forEach(task => {
@@ -20,10 +21,8 @@ class TaskUI {
                 checkbox.click() 
             }
 
-            taskList.appendChild(listElement)
+            this.taskList.appendChild(listElement)
         })
-
-        this.#document.body.appendChild(taskList)
     }
 
     createTaskElements(task) {
@@ -59,6 +58,12 @@ class TaskUI {
         if (this.#taskManager.getTasks()) {
             this.renderTasks()
         }
+    }
+
+    createTaskList() {
+        const list = document.createElement('div')
+        list.setAttribute('id', 'task-list')
+        return list
     }
 
     #createInputElement(inputType) {

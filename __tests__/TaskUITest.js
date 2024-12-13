@@ -115,7 +115,7 @@ describe('TaskUI Test', () => {
             sut.handleSubmit(mockSubmitEvent, textInput)  
         })
 
-        const taskList = document.getElementById('task-list') 
+        const taskList = document.getElementById('task-list')
         const allRenderedTasks = document.querySelectorAll('li')
 
         expect(taskList.innerHTML).toContain(buyMilk)
