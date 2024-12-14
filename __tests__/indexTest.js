@@ -1,10 +1,12 @@
 import start from "../src/js"
 import TaskUI from "../src/js/TaskUI"
 
+const mockTaskUIInstance = {
+    renderUI: jest.fn()
+}
+
 jest.mock('../src/js/TaskUI', () => {
-    return {
-        renderUI: jest.fn()
-    }
+    return jest.fn().mockImplementation(() => mockTaskUIInstance)
 })
 
 describe('Task class test', () => {
@@ -15,7 +17,6 @@ describe('Task class test', () => {
 
     it('should render ui when running start function', () => {
         start()
-        expect(TaskUI.renderUI).toHaveBeenCalled()
+        expect(mockTaskUIInstance.renderUI).toHaveBeenCalled()
     })
-
 })
