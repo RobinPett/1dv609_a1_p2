@@ -9,4 +9,6 @@ const start = () => {
     ui.renderUI()
 }
 
+start()
+
 export default start
