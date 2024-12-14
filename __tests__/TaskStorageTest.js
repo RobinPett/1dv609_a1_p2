@@ -1,5 +1,5 @@
-import TaskStorage from "../src/js/TaskStorage"
-import Task from "../src/js/Task"
+import TaskStorage from "../src/js/TaskStorage.js"
+import Task from "../src/js/Task.js"
 
 jest.mock('../src/js/Task', () => {
     return {

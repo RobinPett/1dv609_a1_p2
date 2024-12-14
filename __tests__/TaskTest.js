@@ -1,4 +1,4 @@
-import Task from '../src/js/Task'
+import Task from '../src/js/Task.js'
 
 let task
 
@@ -35,7 +35,7 @@ describe('Task class test', () => {
 
   it('should set task status to done', () => {
     task.toggleStatus()
-    const actual = task.getStatus()
+    const actual = task.isCompleted()
     const expected = true
 
     expect(actual).toBe(expected)
@@ -44,7 +44,7 @@ describe('Task class test', () => {
   it ('should set task status to not done', () => {
     task.toggleStatus() // Completed: True
     task.toggleStatus() // Completed: False
-    const actual = task.getStatus()
+    const actual = task.isCompleted()
     const expected = false
 
     expect(actual).toBe(expected)

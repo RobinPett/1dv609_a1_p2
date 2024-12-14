@@ -1,5 +1,5 @@
-import TaskManager from "../src/js/TaskManager"
-import Task from "../src/js/Task"
+import TaskManager from "../src/js/TaskManager.js"
+import Task from "../src/js/Task.js"
 
 jest.mock("../src/js/Task")
 

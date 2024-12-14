@@ -28,7 +28,7 @@ class Task {
         this.#completed = !this.#completed
     }
 
-    getStatus() {
+    isCompleted() {
         return this.#completed
     }
 

@@ -1,5 +1,5 @@
-import TaskUI from '../src/js/TaskUI'
-import Task from '../src/js/Task'
+import TaskUI from '../src/js/TaskUI.js'
+import Task from '../src/js/Task.js'
 
 let sut
 
