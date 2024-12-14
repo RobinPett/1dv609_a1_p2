@@ -8,4 +8,5 @@ const start = () => {
     const ui = new TaskUI(document, manager)
     ui.renderUI()
 }
+
 export default start

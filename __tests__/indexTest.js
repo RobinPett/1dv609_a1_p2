@@ -1,5 +1,4 @@
 import start from "../src/js"
-import TaskUI from "../src/js/TaskUI"
 
 const mockTaskUIInstance = {
     renderUI: jest.fn()
