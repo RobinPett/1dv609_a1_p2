@@ -105,6 +105,14 @@ describe('TaskUI Test', () => {
         expect(childElements[0]).toBe(form)
         expect(childElements[1]).toBe(taskList)
     })
+
+    it('should render a delete button on a task', () => {
+        const mockedTasks = mockAndRenderTasks(sut, [buyMilk])
+        const buyMilkTask = document.getElementById(mockedTasks[0].getId())
+        const deleteButton = buyMilkTask.getElementsByClassName('delete')
+
+        expect(buyMilkTask.contains(deleteButton[0])).toBeTruthy() 
+    })
 })
 
 const assertRenderingAfterSubmission = (tasks) => {
