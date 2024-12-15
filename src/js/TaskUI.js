@@ -34,8 +34,9 @@ class TaskUI {
         const checkbox = this.#createInputElement('checkbox')
         listElement.appendChild(checkbox)
 
-        const deleteButton = this.#createInputElement('button')
+        const deleteButton = this.#document.createElement('button')
         deleteButton.setAttribute('class', 'delete')
+        deleteButton.textContent = 'Delete'
         listElement.appendChild(deleteButton)
 
         return {listElement, checkbox}

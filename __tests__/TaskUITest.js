@@ -114,7 +114,7 @@ describe('TaskUI Test', () => {
         const deleteButton = deleteElements[0]
 
         expect(buyMilkTask.contains(deleteButton)).toBeTruthy()
-        expect(deleteButton.innerHTML).toBe('Delete')
+        expect(deleteButton.textContent).toBe('Delete')
 
     })
 })
