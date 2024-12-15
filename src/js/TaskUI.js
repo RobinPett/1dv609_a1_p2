@@ -5,7 +5,7 @@ class TaskUI {
     constructor(document, taskManager) {
         this.#document = document
         this.#taskManager = taskManager
-        this.renderUI()
+        this.#renderUI()
         this.taskList = this.createTaskList()
         this.#document.body.appendChild(this.taskList)
     }
@@ -37,7 +37,7 @@ class TaskUI {
         return {listElement, checkbox}
     }
 
-    renderUI() {
+    #renderUI() {
         const form = this.#document.createElement('form')
         form.setAttribute('id', 'task-form')
         this.#document.body.appendChild(form)

@@ -65,7 +65,6 @@ describe('TaskUI Test', () => {
     })
 
     it ('should render a form', () => {
-        sut.renderUI()
         const form = document.getElementById('task-form')
         expect(document.body.contains(form)).toBeTruthy()
     })
@@ -81,7 +80,6 @@ describe('TaskUI Test', () => {
     })
 
     it ('should use text input from form to add new task to manager', () => {
-        sut.renderUI()
         const input = document.querySelector('input[type="text"]')
         const submitButton = document.querySelector('input[type="submit"]')
 
@@ -100,7 +98,6 @@ describe('TaskUI Test', () => {
     })
 
     it('should render tasklist under form', () => {
-        sut.renderUI()
         const childElements = document.body.childNodes
         const form = document.getElementById('task-form')
         const taskList = document.getElementById('task-list')
@@ -130,10 +127,8 @@ const assertRenderingAfterSubmission = (tasks) => {
 }
 
 const assertRenderingElementInForm = (childName) => {
-    sut.renderUI()
     const containerElement = document.getElementById('task-form')
     const childElement = document.querySelector(childName)
-    console.log(containerElement.innerHTML)
     expect(containerElement.contains(childElement)).toBeTruthy()
 }
 
