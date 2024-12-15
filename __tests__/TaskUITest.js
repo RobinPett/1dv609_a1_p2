@@ -109,9 +109,13 @@ describe('TaskUI Test', () => {
     it('should render a delete button on a task', () => {
         const mockedTasks = mockAndRenderTasks(sut, [buyMilk])
         const buyMilkTask = document.getElementById(mockedTasks[0].getId())
-        const deleteButton = buyMilkTask.getElementsByClassName('delete')
+        const deleteElements = buyMilkTask.getElementsByClassName('delete')
 
-        expect(buyMilkTask.contains(deleteButton[0])).toBeTruthy() 
+        const deleteButton = deleteElements[0]
+
+        expect(buyMilkTask.contains(deleteButton)).toBeTruthy()
+        expect(deleteButton.innerHTML).toBe('Delete')
+
     })
 })
 
