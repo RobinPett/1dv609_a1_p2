@@ -114,6 +114,17 @@ describe('TaskUI Test', () => {
         expect(buyMilkTask.contains(deleteButton)).toBeTruthy()
         expect(deleteButton.textContent).toBe('Delete')
     })
+
+    it('should remove a task from tasklist when delete is pressed', () => {
+        const mockedTasks = mockAndRenderTasks(sut, [buyMilk])
+        const buyMilkTask = document.getElementById(mockedTasks[0].getId())
+        const deleteButton = buyMilkTask.getElementsByClassName('delete')[0] // First element
+
+        deleteButton.click()
+
+        const taskList = document.getElementById('task-list')
+        expect(taskList.contains(buyMilkTask)).toBeFalsy()
+    })
 })
 
 const assertRenderingAfterSubmission = (tasks) => {
