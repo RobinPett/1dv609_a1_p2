@@ -5,6 +5,7 @@ class TaskUI {
     constructor(document, taskManager) {
         this.#document = document
         this.#taskManager = taskManager
+        this.renderUI()
         this.taskList = this.createTaskList()
         this.#document.body.appendChild(this.taskList)
     }
