@@ -98,6 +98,16 @@ describe('TaskUI Test', () => {
     it('should render two task after form submission', () => {
         assertRenderingAfterSubmission[buyMilk, buyBread]
     })
+
+    it('should render tasklist under form', () => {
+        sut.renderUI()
+        const childElements = document.body.childNodes
+        const form = document.getElementById('task-form')
+        const taskList = document.getElementById('task-list')
+
+        expect(childElements[0]).toBe(form)
+        expect(childElements[1]).toBe(taskList)
+    })
 })
 
 const assertRenderingAfterSubmission = (tasks) => {
