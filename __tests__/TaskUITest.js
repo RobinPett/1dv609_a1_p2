@@ -120,6 +120,7 @@ describe('TaskUI Test', () => {
         const buyMilkTask = document.getElementById(mockedTasks[0].getId())
         const deleteButton = buyMilkTask.getElementsByClassName('delete')[0] // First element
 
+        mockTaskManager.getTasks.mockReturnValueOnce([])
         deleteButton.click()
 
         const taskList = document.getElementById('task-list')
@@ -181,7 +182,8 @@ const createMockTasks = (tasks) => {
 
 const mockTaskManager = {
     getTasks: jest.fn(),
-    addTask: jest.fn()
+    addTask: jest.fn(),
+    removeTask: jest.fn()
 }
 
 jest.mock('../src/js/Task', () => {

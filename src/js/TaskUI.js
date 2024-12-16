@@ -80,8 +80,8 @@ class TaskUI {
     }
 
     handleDelete(task) {
-        const taskElemet = this.#document.getElementById(task.getId())
-        this.taskList.removeChild(taskElemet)
+        this.#taskManager.removeTask(task)
+        this.renderTasks()
     }
 }
 
