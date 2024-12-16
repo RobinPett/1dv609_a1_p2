@@ -15,8 +15,9 @@ class TaskUI {
 
         const allTasks = this.#taskManager.getTasks()
         allTasks.forEach(task => {
-            const { listElement, checkbox } = this.createTaskElements(task)
+            const { listElement, checkbox, deleteButton } = this.createTaskElements(task)
             checkbox.addEventListener('change', (event) => task.toggleStatus())
+            deleteButton.addEventListener('click', (event) => this.handleDelete(task))
             
             if(task.isCompleted()) { 
                 checkbox.click() 
@@ -39,7 +40,7 @@ class TaskUI {
         deleteButton.textContent = 'Delete'
         listElement.appendChild(deleteButton)
 
-        return {listElement, checkbox}
+        return {listElement, checkbox, deleteButton}
     }
 
     #renderUI() {
@@ -76,6 +77,11 @@ class TaskUI {
         const element = this.#document.createElement('input')
         element.setAttribute('type', inputType)
         return element
+    }
+
+    handleDelete(task) {
+        const taskElemet = this.#document.getElementById(task.getId())
+        this.taskList.removeChild(taskElemet)
     }
 }
 
