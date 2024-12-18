@@ -27,6 +27,7 @@ class TaskManager {
     toggleStatus(task) {
         const taskIndex = this.#findTaskIndex(task)
         this.#tasks[taskIndex].toggleStatus()
+        this.#updateStorage()
     }
 
     loadFromStorage() {
