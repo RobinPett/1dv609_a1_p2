@@ -2,15 +2,16 @@ import Task from '../src/js/Task.js'
 
 let task
 
+const buyMilk = 'Buy milk'
+
 beforeEach(() => {
-  task = new Task('Buy milk')
+  task = new Task(buyMilk)
 })
 
 describe('Task class test', () => {
   it('should create a new todo task', () => {
-    const taskName = 'Buy milk'
     const actual = task.getName()
-    expect(actual).toBe(taskName)
+    expect(actual).toBe(buyMilk)
   })
 
   it('should get id', () => {
@@ -21,11 +22,10 @@ describe('Task class test', () => {
   })
 
   it('should change task name', () => {
-    const newTask = 'Buy milk'
-    task.setName(newTask)
+    task.setName(buyMilk)
     const actual = task.getName()
 
-    expect(actual).toBe(newTask)
+    expect(actual).toBe(buyMilk)
   })
 
   it('should throw an exception if task is not a string', () => {
