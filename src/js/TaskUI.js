@@ -16,7 +16,7 @@ class TaskUI {
         const allTasks = this.#taskManager.getTasks()
         allTasks.forEach(task => {
             const { listElement, checkbox, deleteButton } = this.createTaskElements(task)
-            checkbox.addEventListener('change', (event) => task.toggleStatus())
+            checkbox.addEventListener('change', (event) => this.#taskManager.toggleStatus(task))
             deleteButton.addEventListener('click', (event) => this.handleDelete(task))
             
             if(task.isCompleted()) { 

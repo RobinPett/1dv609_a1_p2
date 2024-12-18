@@ -51,19 +51,6 @@ describe('TaskUI Test', () => {
         expect(checkbox.checked).toBeTruthy()
     })
 
-    it ('should set a task to complete when checkbox is clicked', () => {
-        const mockedTasks = createMockTasks([buyMilk])
-        const buyMilkTask = mockedTasks[0]
-
-        mockTaskManager.getTasks.mockReturnValueOnce(mockedTasks)
-        sut.renderTasks()
-
-        const { taskElement, checkbox } = getElements(buyMilkTask)
-        checkbox.click()
-
-        expect(buyMilkTask.isCompleted()).toBeTruthy()
-    })
-
     it ('should call taskManager to toggle a task when checkbox is clicked', () => {
         const mockedTasks = createMockTasks([buyMilk])
         const buyMilkTask = mockedTasks[0]
@@ -75,7 +62,6 @@ describe('TaskUI Test', () => {
         checkbox.click()
 
         expect(mockTaskManager.toggleStatus).toHaveBeenCalledWith(buyMilkTask)
-        expect(buyMilkTask.isCompleted()).toBeTruthy()
     })
 
     it ('should render a form', () => {
@@ -205,15 +191,18 @@ jest.mock('../src/js/Task', () => {
     return {
         __esModule: true,
         default: class MockTask {
+            #name 
+            #id
+            #completed 
+
             constructor(name) {
-                this.name = name
-                this.id = 'mockId'
-                this.completed = false
+                this.#name = name
+                this.#id = 'mockId'
+                this.#completed = false
             }
-            getName() { return this.name }
-            getId() { return this.id }   
-            isCompleted() { return this.completed }
-            toggleStatus() { this.completed = !this.completed }
+            getName() { return this.#name }
+            getId() { return this.#id }   
+            isCompleted() { return this.#completed }
         }
     }
 })
