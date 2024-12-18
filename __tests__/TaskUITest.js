@@ -126,6 +126,11 @@ describe('TaskUI Test', () => {
         const taskList = document.getElementById('task-list')
         expect(taskList.contains(buyMilkTask)).toBeFalsy()
     })
+
+    it('should load saved tasks from storage when rendering ui', () => {
+        // renderUI happens in constructor of sut
+        expect(mockTaskManager.loadFromStorage).toHaveBeenCalled()
+    })
 })
 
 const assertRenderingAfterSubmission = (tasks) => {
@@ -184,7 +189,8 @@ const mockTaskManager = {
     getTasks: jest.fn(),
     addTask: jest.fn(),
     removeTask: jest.fn(),
-    toggleStatus: jest.fn()
+    toggleStatus: jest.fn(),
+    loadFromStorage: jest.fn()
 }
 
 jest.mock('../src/js/Task', () => {
