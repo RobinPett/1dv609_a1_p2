@@ -29,8 +29,7 @@ describe('Task class test', () => {
   })
 
   it('should throw an exception if task is not a string', () => {
-    const task = 1
-    expect(() => new Task(task)).toThrow()
+    expect(() => new Task(1)).toThrow()
   })
 
   it('should throw an error if task name is less than 1 character', () => {
