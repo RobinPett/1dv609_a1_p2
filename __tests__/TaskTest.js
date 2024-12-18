@@ -36,6 +36,11 @@ describe('Task class test', () => {
     expect(() => new Task('')).toThrow()
   })
 
+  it('should throw an error if task name is over 120 characters', () => {
+    let fiftyChars = '.'.repeat(121)
+    expect(() => new Task(fiftyChars)).toThrow()
+  })
+
   it('should set task status to done', () => {
     task.toggleStatus()
     const actual = task.isCompleted()
