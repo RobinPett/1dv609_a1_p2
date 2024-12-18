@@ -19,7 +19,7 @@ class Task {
     }
 
     checkName(name) {
-        if (typeof name !== "string" || name.length < 1) {
+        if (typeof name !== "string" || name.length < 1 || name.length > 120) {
             throw new Error("Invalid input")
         }
     }
