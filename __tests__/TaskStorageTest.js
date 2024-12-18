@@ -41,11 +41,6 @@ describe('TaskStorage Test', () => {
         assertSavedTask(sut, [task1, task2])
     })
 
-    it ('should load one task', () => {
-        const {loadedTasks, createdTasks} = loadTasks(sut, [task1])
-        expect(loadedTasks).toEqual(createdTasks)
-    })
-
     it ('should load a task with name, id and completed fields', () => {
         const {loadedTasks, createdTasks} = loadTasks(sut, [task1])
         const firstLoadedTask = loadedTasks[0]
@@ -56,9 +51,13 @@ describe('TaskStorage Test', () => {
         expect(firstLoadedTask.completed).toBe(firstCreatedTask.isCompleted())
     })
 
-    it ('should load two tasks', () => {
+    it ('should load two tasks wit name, id and completed', () => {
         const {loadedTasks, createdTasks} = loadTasks(sut, [task1, task2])
-        expect(loadedTasks).toEqual(createdTasks)
+        loadedTasks.forEach((task, index) => {
+            expect(task.name).toBe(createdTasks[index].getName())
+            expect(task.id).toBe(createdTasks[index].getId())
+            expect(task.completed).toBe(createdTasks[index].isCompleted())
+        })
     })
 
     it ('should load empty task list', () => {
@@ -83,12 +82,21 @@ describe('TaskStorage Test', () => {
 const assertSavedTask = (sut, tasks) => {
     const createdTasks = createTasks(tasks)
     sut.save(createdTasks)
-    expect(mockLocalStorage.setItem).toHaveBeenCalledWith('Todo', JSON.stringify(createdTasks))
+
+    const expectedSavedTasks = createdTasks.map((task) => {
+        return { name: task.getName(), id: task.getId(), completed: task.isCompleted() }
+    })
+
+    expect(mockLocalStorage.setItem).toHaveBeenCalledWith('Todo', JSON.stringify(expectedSavedTasks))
 }
 
 const loadTasks = (sut, tasks) => {
     const createdTasks = createTasks(tasks)
-    mockLocalStorage.getItem.mockReturnValueOnce(JSON.stringify(createdTasks))
+    const expectedLoadedTasks = createdTasks.map((task) => {
+        return { name: task.getName(), id: task.getId(), completed: task.isCompleted() }
+    })
+
+    mockLocalStorage.getItem.mockReturnValueOnce(JSON.stringify(expectedLoadedTasks))
     const loadedTasks = sut.load()
     return {loadedTasks, createdTasks}
 }

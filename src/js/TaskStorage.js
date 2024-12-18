@@ -13,7 +13,11 @@ class TaskStorage {
             if (!(task instanceof Task)) throw new Error('Array must contain Tasks')
         })
 
-        this.#storage.setItem(this.#key, JSON.stringify(tasks))
+        const tasksToSave = tasks.map(task => {
+            return {name: task.getName(), id: task.getId(), completed: task.isCompleted()}
+        })
+
+        this.#storage.setItem(this.#key, JSON.stringify(tasksToSave))
     }
 
     load() {
