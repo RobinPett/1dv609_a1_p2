@@ -11,6 +11,7 @@ class TaskManager {
     addTask(task) {
         const newTask = new Task(task)
         this.#tasks.push(newTask)
+        this.#storage.save(this.#tasks)
     }
 
     getTasks() {
