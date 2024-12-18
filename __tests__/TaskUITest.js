@@ -129,6 +129,17 @@ describe('TaskUI Test', () => {
         // renderUI happens in constructor of sut
         expect(mockTaskManager.loadFromStorage).toHaveBeenCalled()
     })
+
+    it ('should render saved tasks after UI has been rendered', () => {
+        const mockedTasks = createMockTasks([buyMilk])
+        const mockTaskManager = { 
+            getTasks: jest.fn().mockReturnValueOnce(mockedTasks),
+            loadFromStorage: jest.fn()
+        }
+        new TaskUI(document, mockTaskManager)
+
+        expect(document.body.innerHTML).toContain(buyMilk)
+    })
 })
 
 const assertRenderingAfterSubmission = (tasks) => {
