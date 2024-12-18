@@ -67,6 +67,16 @@ describe('TaskManager class test', () => {
         
         expect(mockStorage.save).toHaveBeenCalledWith([])
     })
+
+    it ('should save to storage when toggeling task completed status', () => {
+        const task = createAndAddTaskToManager(sut, buyMilk)
+        jest.clearAllMocks()
+        
+        sut.toggleStatus(task)
+        
+        expect(task.isCompleted()).toBeTruthy()
+        expect(mockStorage.save).toHaveBeenCalledWith([task])
+    })
 })
 
 addTaskAndToggleStatus = (sut, task) => {
@@ -104,7 +114,7 @@ assertTaskRemoval = (sut, tasks) => {
 }
 
 assertTaskStatus = (task, status) => {
-    expect(task.isComplete()).toBe(status)
+    expect(task.isCompleted()).toBe(status)
 }
 
 assertTaskLoaded = (sut, tasks) => {
@@ -115,7 +125,7 @@ assertTaskLoaded = (sut, tasks) => {
         loadedTasks.push({
             name: task.getName(),
             id: task.getId(),
-            completed: task.isComplete()
+            completed: task.isCompleted()
         })
     })
 
@@ -142,7 +152,7 @@ createMockTask = (task) => {
         getName: jest.fn().mockReturnValue(task),
         getId: jest.fn().mockReturnValue(task + 'Id'),
         toggleStatus: jest.fn(() => completed = !completed),
-        isComplete: jest.fn(() => completed)
+        isCompleted: jest.fn(() => completed)
     }
     Task.mockImplementationOnce(() => taskMock)
     return taskMock
