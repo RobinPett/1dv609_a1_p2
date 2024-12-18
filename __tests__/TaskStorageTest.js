@@ -5,14 +5,18 @@ jest.mock('../src/js/Task', () => {
     return {
         __esModule: true,
         default: class MockTask {
+            #name 
+            #id
+            #completed 
+
             constructor(name) {
-                this.name = name
-                this.id = 'mockId'
-                this.completed = false
+                this.#name = name
+                this.#id = 'mockId'
+                this.#completed = false
             }
-            getName() { return this.name }
-            getId() { return this.id }   
-            isCompleted() { return this.completed }
+            getName() { return this.#name }
+            getId() { return this.#id }   
+            isCompleted() { return this.#completed }
         }
     }
 })
@@ -63,6 +67,16 @@ describe('TaskStorage Test', () => {
 
     it ('should throw an error if tasks are not of type Task', () => {
         expect(() => sut.save([{}])).toThrow()
+    })
+
+    it ('should save a task with name, id and completed', () => {
+        const createdTasks = createTasks(['Buy milk'])
+        sut.save(createdTasks)
+
+        const task = createdTasks[0]
+        const taskToSave = { name: task.getName(), id: task.getId(), completed: task.isCompleted() }
+
+        expect(mockLocalStorage.setItem).toHaveBeenCalledWith('Todo', JSON.stringify([taskToSave]))
     })
 })
 
