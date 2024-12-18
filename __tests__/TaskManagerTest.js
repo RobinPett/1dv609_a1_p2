@@ -10,6 +10,7 @@ let sut
 
 beforeEach(() => {
     sut = new TaskManager(mockStorage)
+    jest.resetAllMocks()
 })
 
 describe('TaskManager class test', () => {
@@ -58,6 +59,13 @@ describe('TaskManager class test', () => {
         sut.addTask(buyMilk)
         const allTasks = sut.getTasks()
         expect(mockStorage.save).toHaveBeenCalledWith(allTasks)
+    })
+
+    it ('should save to storage when a task is removed', () => {
+        const task = createMockTask(buyMilk)
+        sut.removeTask(task)
+        
+        expect(mockStorage.save).toHaveBeenCalledWith([])
     })
 })
 
@@ -124,6 +132,7 @@ assertTaskLoaded = (sut, tasks) => {
 createAndAddTaskToManager = (sut, task) => {
     const mockTask = createMockTask(task)
     sut.addTask(mockTask)
+    return mockTask
 }
 
 createMockTask = (task) => {
