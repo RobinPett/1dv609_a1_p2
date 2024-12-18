@@ -108,23 +108,21 @@ describe('TaskUI Test', () => {
 
     it('should render a delete button on a task', () => {
         const mockedTasks = mockAndRenderTasks(sut, [buyMilk])
-        const buyMilkTask = document.getElementById(mockedTasks[0].getId())
-        const deleteButton = buyMilkTask.getElementsByClassName('delete')[0] // First element
+        const {deleteButton, task} = getDeleteButton(mockedTasks)
 
-        expect(buyMilkTask.contains(deleteButton)).toBeTruthy()
+        expect(task.contains(deleteButton)).toBeTruthy()
         expect(deleteButton.textContent).toBe('Delete')
     })
 
     it('should remove a task from tasklist when delete is pressed', () => {
         const mockedTasks = mockAndRenderTasks(sut, [buyMilk])
-        const buyMilkTask = document.getElementById(mockedTasks[0].getId())
-        const deleteButton = buyMilkTask.getElementsByClassName('delete')[0] // First element
+        const {deleteButton, task} = getDeleteButton(mockedTasks)
 
         mockTaskManager.getTasks.mockReturnValueOnce([])
         deleteButton.click()
 
         const taskList = document.getElementById('task-list')
-        expect(taskList.contains(buyMilkTask)).toBeFalsy()
+        expect(taskList.contains(task)).toBeFalsy()
     })
 
     it('should load saved tasks from storage when rendering ui', () => {
@@ -152,6 +150,15 @@ const assertRenderingAfterSubmission = (tasks) => {
     expect(allRenderedTasks.length).toBe(tasks.length)
 }
 
+const assertTaskRendering = (sut, tasks) => {
+    mockAndRenderTasks(sut, tasks)
+    const taskContainer = document.getElementById('task-list')
+
+    tasks.forEach((task) => {
+        expect (taskContainer.innerHTML).toContain(task)
+    })
+}
+
 const assertRenderingElementInForm = (childName) => {
     const containerElement = document.getElementById('task-form')
     const childElement = document.querySelector(childName)
@@ -165,13 +172,10 @@ const getElements = (mockedTask) => {
     return {taskElement, checkbox}
 }
 
-const assertTaskRendering = (sut, tasks) => {
-    mockAndRenderTasks(sut, tasks)
-    const taskContainer = document.getElementById('task-list')
-
-    tasks.forEach((task) => {
-        expect (taskContainer.innerHTML).toContain(task)
-    })
+const getDeleteButton = (mockedTasks) => {
+    const task = document.getElementById(mockedTasks[0].getId())
+    const deleteButton = task.getElementsByClassName('delete')[0] // First element
+    return {deleteButton, task}
 }
 
 const mockAndRenderTasks = (sut, tasks) => {
