@@ -55,6 +55,8 @@ class TaskUI {
         form.appendChild(submitButton)
 
         form.addEventListener('submit', (event) => { this.handleSubmit(event, textInput) })
+
+        this.#taskManager.loadFromStorage()
     }
 
     handleSubmit(event, textInput) {
