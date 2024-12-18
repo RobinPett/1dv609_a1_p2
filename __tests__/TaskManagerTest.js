@@ -56,7 +56,8 @@ describe('TaskManager class test', () => {
 
     it ('should save to storage when new task is created', () => {
         sut.addTask(buyMilk)
-        expect(mockStorage.save).toHaveBeenCalled()
+        const allTasks = sut.getTasks()
+        expect(mockStorage.save).toHaveBeenCalledWith(allTasks)
     })
 })
 
