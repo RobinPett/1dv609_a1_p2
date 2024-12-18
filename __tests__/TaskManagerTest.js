@@ -46,10 +46,6 @@ describe('TaskManager class test', () => {
     })
 
     it ('should inject storage into TaskManager', () => {
-        const mockStorage = {
-            save: jest.fn(),
-            load: jest.fn()
-        }
         const taskManager = new TaskManager(mockStorage)
         taskManager.loadFromStorage()
         expect(mockStorage.load).toHaveBeenCalled()
