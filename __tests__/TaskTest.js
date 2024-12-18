@@ -33,6 +33,10 @@ describe('Task class test', () => {
     expect(() => new Task(task)).toThrow()
   })
 
+  it('should throw an error if task name is less than 1 character', () => {
+    expect(() => new Task('')).toThrow()
+  })
+
   it('should set task status to done', () => {
     task.toggleStatus()
     const actual = task.isCompleted()
