@@ -19,7 +19,7 @@ class Task {
     }
 
     checkName(name) {
-        if (typeof name !== "string") {
+        if (typeof name !== "string" || name.length < 1) {
             throw new Error("Task name must be a string")
         }
     }
