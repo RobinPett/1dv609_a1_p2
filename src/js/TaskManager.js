@@ -21,6 +21,7 @@ class TaskManager {
     removeTask(task) {
         const taskIndex = this.#findTaskIndex(task)
         this.#tasks.splice(taskIndex, 1) // 1 todoItem to remove
+        this.#storage.save(this.#tasks)
     }
 
     toggleStatus(task) {
