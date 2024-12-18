@@ -14,17 +14,20 @@ class TaskUI {
         this.taskList.innerHTML = '' // Remove all previous children
 
         const allTasks = this.#taskManager.getTasks()
-        allTasks.forEach(task => {
-            const { listElement, checkbox, deleteButton } = this.createTaskElements(task)
-            checkbox.addEventListener('change', (event) => this.#taskManager.toggleStatus(task))
-            deleteButton.addEventListener('click', (event) => this.handleDelete(task))
-            
-            if(task.isCompleted()) { 
-                checkbox.click() 
-            }
 
-            this.taskList.appendChild(listElement)
-        })
+        if (allTasks) {
+            allTasks.forEach(task => {
+                const { listElement, checkbox, deleteButton } = this.createTaskElements(task)
+                checkbox.addEventListener('change', (event) => this.#taskManager.toggleStatus(task))
+                deleteButton.addEventListener('click', (event) => this.handleDelete(task))
+
+                if (task.isCompleted()) {
+                    checkbox.click()
+                }
+
+                this.taskList.appendChild(listElement)
+            })
+        }
     }
 
     createTaskElements(task) {
@@ -40,7 +43,7 @@ class TaskUI {
         deleteButton.textContent = 'Delete'
         listElement.appendChild(deleteButton)
 
-        return {listElement, checkbox, deleteButton}
+        return { listElement, checkbox, deleteButton }
     }
 
     #renderUI() {
@@ -57,6 +60,7 @@ class TaskUI {
         form.addEventListener('submit', (event) => { this.handleSubmit(event, textInput) })
 
         this.#taskManager.loadFromStorage()
+        this.renderTasks()
     }
 
     handleSubmit(event, textInput) {
