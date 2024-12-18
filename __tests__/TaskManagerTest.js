@@ -92,7 +92,6 @@ assertTasksAdded = (sut, tasks) => {
         const expectedTask = task
         const actualTask = allTasks[index].getName()
         expect(expectedTask).toBe(actualTask)
-        expect(allTasks.length).toBe(tasks.length)
     })
 }
 

@@ -1,26 +1,6 @@
 import TaskStorage from "../src/js/TaskStorage.js"
 import Task from "../src/js/Task.js"
 
-jest.mock('../src/js/Task', () => {
-    return {
-        __esModule: true,
-        default: class MockTask {
-            #name 
-            #id
-            #completed 
-
-            constructor(name) {
-                this.#name = name
-                this.#id = 'mockId'
-                this.#completed = false
-            }
-            getName() { return this.#name }
-            getId() { return this.#id }   
-            isCompleted() { return this.#completed }
-        }
-    }
-})
-
 const buyMilk = 'Buy Milk'
 const buyBread = 'Buy Bread'
 
@@ -91,13 +71,30 @@ const loadTasks = (sut, tasks) => {
 
 const createTasks = (tasks) => tasks.map(task => new Task(task))
 
+jest.mock('../src/js/Task', () => {
+    return {
+        __esModule: true,
+        default: class MockTask {
+            #name 
+            #id
+            #completed 
+
+            constructor(name) {
+                this.#name = name
+                this.#id = 'mockId'
+                this.#completed = false
+            }
+            getName() { return this.#name }
+            getId() { return this.#id }   
+            isCompleted() { return this.#completed }
+        }
+    }
+})
+
 const createMockLocalStorage = () => {
     let savedItems = {}
     return {
-        setItem: jest.fn((key, value) => {
-            savedItems[key] = value
-        }),
-
+        setItem: jest.fn(),
         getItem: jest.fn()
     }
 }
