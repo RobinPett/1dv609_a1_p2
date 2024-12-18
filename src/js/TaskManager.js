@@ -11,7 +11,7 @@ class TaskManager {
     addTask(task) {
         const newTask = new Task(task)
         this.#tasks.push(newTask)
-        this.#storage.save(this.#tasks)
+        this.#updateStorage()
     }
 
     getTasks() {
@@ -21,7 +21,7 @@ class TaskManager {
     removeTask(task) {
         const taskIndex = this.#findTaskIndex(task)
         this.#tasks.splice(taskIndex, 1) // 1 todoItem to remove
-        this.#storage.save(this.#tasks)
+        this.#updateStorage()
     }
 
     toggleStatus(task) {
@@ -41,6 +41,10 @@ class TaskManager {
 
     #findTaskIndex(task) {
         return this.#tasks.findIndex(t => t.getId() === task.getId())
+    }
+
+    #updateStorage() {
+        this.#storage.save(this.#tasks)
     }
 }
 
