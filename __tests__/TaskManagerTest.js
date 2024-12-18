@@ -53,6 +53,11 @@ describe('TaskManager class test', () => {
         taskManager.loadFromStorage()
         expect(mockStorage.load).toHaveBeenCalled()
     })
+
+    it ('should save to storage when new task is created', () => {
+        sut.addTask(buyMilk)
+        expect(mockStorage.save).toHaveBeenCalled()
+    })
 })
 
 addTaskAndToggleStatus = (sut, task) => {
