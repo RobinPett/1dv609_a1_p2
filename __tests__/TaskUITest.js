@@ -64,6 +64,20 @@ describe('TaskUI Test', () => {
         expect(buyMilkTask.isCompleted()).toBeTruthy()
     })
 
+    it ('should call taskManager to toggle a task when checkbox is clicked', () => {
+        const mockedTasks = createMockTasks([buyMilk])
+        const buyMilkTask = mockedTasks[0]
+
+        mockTaskManager.getTasks.mockReturnValueOnce(mockedTasks)
+        sut.renderTasks()
+
+        const { taskElement, checkbox } = getElements(buyMilkTask)
+        checkbox.click()
+
+        expect(mockTaskManager.toggleStatus).toHaveBeenCalledWith(buyMilkTask)
+        expect(buyMilkTask.isCompleted()).toBeTruthy()
+    })
+
     it ('should render a form', () => {
         const form = document.getElementById('task-form')
         expect(document.body.contains(form)).toBeTruthy()
@@ -183,7 +197,8 @@ const createMockTasks = (tasks) => {
 const mockTaskManager = {
     getTasks: jest.fn(),
     addTask: jest.fn(),
-    removeTask: jest.fn()
+    removeTask: jest.fn(),
+    toggleStatus: jest.fn()
 }
 
 jest.mock('../src/js/Task', () => {
